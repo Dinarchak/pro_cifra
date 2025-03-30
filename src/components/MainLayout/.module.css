@@ -1,7 +1,25 @@
+.header {
+  display: flex;
+  justify-self: start;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 2rem;
+}
+
 .header a {
     color: rgb(0, 0, 0);
     text-decoration: none;
     font-weight: bold;
+}
+
+.logo {
+  margin: 5px 5px;
+  font-size: 2rem;
+}
+
+.naviagation li {
+  display: inline-block;
+  margin: 5px 10px;
 }
   
 .footer {

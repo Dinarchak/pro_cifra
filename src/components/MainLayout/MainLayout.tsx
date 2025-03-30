@@ -5,8 +5,8 @@ import {Outlet} from "react-router";
 export default function MainLayout() {
     return (<>
       <header className={styles.header}>
-        <h1>Логотип</h1>
-        <nav>
+        <h1 className={styles.logo}>Логотип</h1>
+        <nav className={styles.naviagation}>
           <ul>
             <li><a href="/">Главная</a></li>
             <li><a href="/about">О нас</a></li>

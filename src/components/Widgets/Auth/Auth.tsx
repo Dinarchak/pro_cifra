@@ -1,5 +1,5 @@
 import styles from "./.module.css"
-import authService from "../../services/authServise"
+import authService from "../../../services/authServise"
 import {useState} from "react"
 
 type AuthType = {

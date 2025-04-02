@@ -1,0 +1,10 @@
+.card {
+    padding: 5px;
+}
+
+.field {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 5px;
+}

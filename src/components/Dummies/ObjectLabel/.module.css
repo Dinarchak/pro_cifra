@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.label {
+    font-size: 4rem;
+    font-weight: 400;
+}

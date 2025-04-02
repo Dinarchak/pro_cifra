@@ -3,10 +3,11 @@ import University from "./university";
 
 export default interface User {
     id: number;
-    login: string;
+    full_name: string;
     email: string;
     type: string;
-    // avatar: ImageDTO;
-    major: Major;
-    university: University;
+    avatar?: string;
+    major?: Major;
+    university?: University;
+    
 };

@@ -1,9 +1,10 @@
 .label {
-    font-size: 2rem;
-    font-weight: 500;
+    font-style: bold;
+    padding-right: 10px;
+    font-weight: bold;
+    
 }
 
 .value {
-    font-size: 1.8rem;
     font-weight: 400;
 }

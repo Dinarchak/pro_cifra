@@ -1,0 +1,10 @@
+.container {
+    display: block;
+    width: 4rem;
+}
+
+.avatar {
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+}

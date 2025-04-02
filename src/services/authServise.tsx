@@ -1,24 +1,16 @@
+import AuthData from "../models/auth";
 import api from "./api";
-
-interface AuthData {
-    email: string;
-    password: string;
-}
 
 const authService = {
     login: async (data: AuthData) => {
-        const response  = await api.get('/auth/login', {params: data});
-        /*
-            что-то делаем
-        */
+        const response  = await api.get('/auth/signin', {params: data});
+        return await response.data;
     },
 
     register: async (data: AuthData) => {
-        const response = await api.post('/auth/', data)
-        /*
-            что-то делаем
-        */
+        const response = await api.post('/auth/signup', data)
+        return await response.data;
     }
 }
 
-export default authService
+export default authService;

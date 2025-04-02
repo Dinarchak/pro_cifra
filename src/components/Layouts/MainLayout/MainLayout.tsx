@@ -1,6 +1,6 @@
 import styles from "./.module.css";
 import React from "react";
-import {Outlet} from "react-router";
+import {Outlet, Link} from "react-router";
 
 export default function MainLayout() {
     return (<>
@@ -8,15 +8,14 @@ export default function MainLayout() {
         <h1 className={styles.logo}>Логотип</h1>
         <nav className={styles.naviagation}>
           <ul>
-            <li><a href="/">Главная</a></li>
-            <li><a href="/about">О нас</a></li>
-            <li><a href="/contact">Контакты</a></li>
+            <li><Link to="/">Главная</Link></li>
+            <li><Link to="/profile">Профиль</Link></li>
           </ul>
         </nav>
       </header>
-
-      <Outlet/>
-
+      <div className={styles.container}>
+        <Outlet/>
+      </div>
     <footer className={styles.footer}>
       <p>&copy; 2025 Все права защищены</p>
     </footer>

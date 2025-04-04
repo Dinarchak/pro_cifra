@@ -1,11 +1,3 @@
-.header {
-  display: flex;
-  justify-self: start;
-  flex-direction: row;
-  align-items: center;
-  padding: 0 2rem;
-}
-
 .header a {
     color: rgb(0, 0, 0);
     text-decoration: none;
@@ -34,4 +26,20 @@
   
 .container {
   margin: 10px 5vw;
+}
+
+.headerDivider {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95vw;
+  margin: auto;
+}
+
+.leftHalf {
+  display: flex;
+  justify-self: start;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 2rem;
 }

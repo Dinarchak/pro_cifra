@@ -7,9 +7,8 @@ import { AuthContextType } from "../models/auth";
 const AuthContext = createContext<AuthContextType>({token: null, setToken: () => {}});
 
 const AuthProvider = ({children}:any) => {
-    const [user, setUser] = useState(null);
     const [token, setToken_] = useState(localStorage.getItem('token'));
-
+    console.log(token)
     const setToken = (newToken: string) => {
         setToken_(newToken);
     };
@@ -17,6 +16,7 @@ const AuthProvider = ({children}:any) => {
     useEffect(() => {
         if (token) {
             api.defaults.headers.common['Authorization'] = 'Bearer' + token;
+            localStorage.setItem('token',token);
         } else {
             delete api.defaults.headers.common['Authorization'];
             localStorage.removeItem('token');

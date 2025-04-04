@@ -5,8 +5,9 @@ import styles from './.module.css'
 const RegisterPage: React.FC = () => {
 
   const [email, setEmail] = useState("");
-  const [full_name, setFullName] = useState("");
+  const [fullname, setFullName] = useState("");
   const [password, setPassword] = useState("");
+  const [login, setLogin] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -20,11 +21,12 @@ const RegisterPage: React.FC = () => {
         }
 
         try {
-            const resp = await authService.register({email, password, full_name});
+            const resp = await authService.register({email: email, password: password, fullname: fullname, name: login});
             console.log("Запрос обработан")
         }
         catch {
             setError("Ошибка. Запрос не принят.")
+            console.log(error)
         }
     }
 
@@ -41,11 +43,18 @@ const RegisterPage: React.FC = () => {
             onChange={(e) => setFullName(e.target.value)}/>
           </div>
           <div className={styles.inputGroup}>
-            <label>Email</label>
+            <label>Почта</label>
             <input 
             type="email"
             required
             onChange={(e) => setEmail(e.target.value)}/>
+          </div>
+          <div className={styles.inputGroup}>
+            <label>Логин</label>
+            <input 
+            type="name"
+            required
+            onChange={(e) => setLogin(e.target.value)}/>
           </div>
           <div className={styles.inputGroup}>
             <label>Пароль</label>
@@ -61,7 +70,7 @@ const RegisterPage: React.FC = () => {
               required
               onChange={(e) => setConfirmPassword(e.target.value)}/>
             </div>
-          <button type="submit" className={styles.button} onClick={submit}>
+          <button type="button" className={styles.button} onClick={submit}>
             Зарегистрироваться
           </button>
         </form>

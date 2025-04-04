@@ -9,16 +9,15 @@ const LoginPage: React.FC = () => {
   const token = useAuth();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [full_name, setFullName] = useState("");
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
   async function submit(e: any) {
     try {
-        const resp = await authService.login({email, password, full_name});
+        const resp = await authService.login({password: password, name: login});
         console.log("Запрос обработан", resp)
         token.setToken(resp);
-        navigate('profile');
+        navigate('/profile', { replace: true});
     }
     catch {
         console.error("Ошибка. Запрос не принят.")
@@ -30,18 +29,11 @@ const LoginPage: React.FC = () => {
       <h2>Вход</h2>
       <form>
       <div className={styles.inputGroup}>
-          <label>ФИО</label>
+          <label>Логин</label>
           <input
           type="text"
           required
-          onChange={(e) => setFullName(e.target.value)}/>
-        </div>
-        <div className={styles.inputGroup}>
-          <label>Email</label>
-          <input 
-          type="email"
-          required
-          onChange={(e) => setEmail(e.target.value)}/>
+          onChange={(e) => setLogin(e.target.value)}/>
         </div>
         <div className={styles.inputGroup}>
           <label>Пароль</label>
@@ -50,7 +42,7 @@ const LoginPage: React.FC = () => {
           required
           onChange={(e) => setPassword(e.target.value)}/>
         </div>
-        <button type="submit" className={styles.button} onClick={submit}>
+        <button type="button" className={styles.button} onClick={submit}>
           Войти
         </button>
       </form>

@@ -1,22 +1,22 @@
 import { useContext, createContext, useState, useEffect, useMemo} from "react";
 import api from "../services/api";
-import authService from "../services/authServise";
-import AuthData from "../models/auth";
 import { AuthContextType } from "../models/auth";
 
 const AuthContext = createContext<AuthContextType>({token: null, setToken: () => {}});
 
+
+
 const AuthProvider = ({children}:any) => {
-    const [token, setToken_] = useState(localStorage.getItem('token'));
-    console.log(token)
-    const setToken = (newToken: string) => {
+    const [token, setToken_] = useState<string | null>(localStorage.getItem('token') ?? null);
+
+    const setToken = (newToken: string | null) => {
         setToken_(newToken);
     };
 
     useEffect(() => {
         if (token) {
-            api.defaults.headers.common['Authorization'] = 'Bearer' + token;
-            localStorage.setItem('token',token);
+            api.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+            localStorage.setItem('token', token);
         } else {
             delete api.defaults.headers.common['Authorization'];
             localStorage.removeItem('token');

@@ -1,12 +1,9 @@
 import api from "./api";
-import User from "../models/user";
 
 const userService = {
-    getUser: async(id: number) => {
-        const resp = api.get('url', {params: {id: id}})
-        /*
-            что-то делаем
-        */
+    getUser: async() => {
+        const resp = await api.get('/user/getAllAboutUser');
+        return resp.data;
     }
 };
 

@@ -1,13 +1,13 @@
-import AuthData from "../models/auth";
+import LoginData, { RegisterData } from "../models/auth";
 import api from "./api";
 
 const authService = {
-    login: async (data: AuthData) => {
-        const response  = await api.get('/auth/signin', {params: data});
+    login: async (data: LoginData) => {
+        const response  = await api.post('/auth/signin', data);
         return await response.data;
     },
 
-    register: async (data: AuthData) => {
+    register: async (data: RegisterData) => {
         const response = await api.post('/auth/signup', data)
         return await response.data;
     }

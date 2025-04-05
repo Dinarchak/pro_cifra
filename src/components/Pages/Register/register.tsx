@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import authService from "../../../services/authServise";
 import styles from './.module.css'
+import Button from "../../UI/Button/Button";
 
 const RegisterPage: React.FC = () => {
 
@@ -70,9 +71,8 @@ const RegisterPage: React.FC = () => {
               required
               onChange={(e) => setConfirmPassword(e.target.value)}/>
             </div>
-          <button type="button" className={styles.button} onClick={submit}>
-            Зарегистрироваться
-          </button>
+
+            <Button callback={submit}>Зарегистрироваться</Button>
         </form>
       </div>
     </div>

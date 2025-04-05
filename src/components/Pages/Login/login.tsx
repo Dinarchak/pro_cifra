@@ -3,6 +3,7 @@ import { useAuth } from "../../../provider/authProvider";
 import { useNavigate } from "react-router";
 import styles from "./.module.css"
 import authService from "../../../services/authServise";
+import Button from "../../UI/Button/Button";
 
 
 const LoginPage: React.FC = () => {
@@ -15,9 +16,8 @@ const LoginPage: React.FC = () => {
   async function submit(e: any) {
     try {
         const resp = await authService.login({password: password, name: login});
-        console.log("Запрос обработан", resp)
         token.setToken(resp);
-        navigate('/profile', { replace: true});
+        navigate('/profile');
     }
     catch {
         console.error("Ошибка. Запрос не принят.")
@@ -42,9 +42,8 @@ const LoginPage: React.FC = () => {
           required
           onChange={(e) => setPassword(e.target.value)}/>
         </div>
-        <button type="button" className={styles.button} onClick={submit}>
-          Войти
-        </button>
+
+        <Button callback={submit}>Войти</Button>
       </form>
     </div>
   </div>

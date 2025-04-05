@@ -1,24 +1,40 @@
-import {useLoaderData} from "react-router"
 import userShownFieldNames from "./constants";
-import UserShownInfo from './types'
+
 import ObjectFields from "../../Dummies/ObjectFields/ObjectFields";
 import ObjectLabel from "../../Dummies/ObjectLabel/ObjectLabel";
+import Button from "../../UI/Button/Button";
 
+import { useEffect , useState } from "react";
+import userService from "../../../services/userService";
+import { useAuth } from "../../../provider/authProvider";
+
+import User from "../../../models/user";
 
 export default function UserHomePage() {
-    const data = useLoaderData()
-    const userShowFieldValues: UserShownInfo = {
-      email: data.email,
-      major: 'ПМ-ПУ', // тут надо будет взять поле из объекта Major
-      university_name: 'СПбГУ', // тут надо будет влять поле из объекта University и ссылочку сделать
-    }
+
+    const [data, setData] = useState<User>({email: "", fullname: "", type: null});
+    const token = useAuth();
+
+    useEffect(() => {
+      const loadData = async () => {
+        try {
+          const data = await userService.getUser();
+          setData(data);
+        } catch (error) {
+          console.error("Ошибка при загрузке:", error);
+        }
+      };
+    
+      loadData();
+    }, []);
 
     return (
         <>
-          <ObjectLabel avatar={data.avatar} label={data.full_name}/>
+          <ObjectLabel avatar="" label={data.fullname}/>
           <div>
-            <ObjectFields dataNames={userShownFieldNames} dataValues={userShowFieldValues}/>
+            <ObjectFields dataNames={userShownFieldNames} dataValues={data}/>
           </div>
+          <Button callback={(e) => token.setToken(null)}>Выйти</Button>
         </>
     );
 }

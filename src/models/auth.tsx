@@ -1,10 +1,16 @@
-export default interface AuthData {
+export interface RegisterData {
     email: string;
-    full_name: string;
+    fullname: string;
+    password: string;
+    name: string;
+}
+
+export default interface LoginData {
+    name: string;
     password: string;
 }
 
 export interface AuthContextType {
     token: string | null;
-    setToken: (newToken: string) => void;
+    setToken: (newToken: string | null) => void;
 }

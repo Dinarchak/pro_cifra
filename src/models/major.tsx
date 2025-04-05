@@ -1,4 +1,4 @@
-export default interface University {
+export default interface Major {
     id: number;
     name: string;
 }

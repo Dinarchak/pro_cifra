@@ -1,13 +1,7 @@
-import Major from "./major"
-import University from "./university";
-
-export default interface User {
-    id: number;
-    full_name: string;
+type User = {
+    fullname: string;
     email: string;
-    type: string;
-    avatar?: string;
-    major?: Major;
-    university?: University;
-    
+    type: string | null;    
 };
+
+export default User;

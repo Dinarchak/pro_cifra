@@ -1,25 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import Course from "../../../models/course";
 import courseService from "../../../services/courseService";
 import CourseCard from "../../Dummies/CourseCard/CourseCard";
 import styles from "./.module.css";
 
 type CourseCardListType = {
-    request: () => Promise<any>;
+    list: Array<Course>;
 }
 
-export default function CourseCardList({request}: CourseCardListType) {
+export default function CourseCardList({list}: CourseCardListType) {
 
-    const [data, setData] = useState<Array<Course>>([]);
-    useEffect(() => {
-        const loadData = async () => {
-            const data = await courseService.getAllCourses();
-            setData(data);
-        }
-        loadData();
-    })
-
-    const coursesList = data.map(course => <>
+    const coursesList = list.map(course => <>
         <li key={course.id} className={styles.courseCard}>
             <CourseCard course={course}/>
         </li>

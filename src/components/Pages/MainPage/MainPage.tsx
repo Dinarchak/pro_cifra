@@ -7,6 +7,20 @@ import CourseCardList from "../../Widgets/CourseCardList/CourseCardList";
 
 export default function MainPage() {
 
-    return <CourseCardList request={courseService.getAllCourses}/>;
+    const [coursesList, setCoursesList] = useState<Array<Course>>([]);
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+              const coursesList_ = await courseService.getAllCourses();
+              setCoursesList(coursesList_);
+            } catch (error) {
+              console.error("Ошибка при загрузке");
+            }
+          };
+        
+          loadData();
+    });
+
+    return <CourseCardList list={coursesList}/>;
 }
 

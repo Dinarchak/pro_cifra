@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import styles from "./.module.css"
 import authService from "../../../services/authServise";
 import Button from "../../UI/Button/Button";
+import FormInput from "../../UI/FormInput/Input";
 
 
 const LoginPage: React.FC = () => {
@@ -28,21 +29,8 @@ const LoginPage: React.FC = () => {
     <div className={styles.card}>
       <h2>Вход</h2>
       <form>
-      <div className={styles.inputGroup}>
-          <label>Логин</label>
-          <input
-          type="text"
-          required
-          onChange={(e) => setLogin(e.target.value)}/>
-        </div>
-        <div className={styles.inputGroup}>
-          <label>Пароль</label>
-          <input
-          type="password"
-          required
-          onChange={(e) => setPassword(e.target.value)}/>
-        </div>
-
+      <FormInput label="Логин" callback={setLogin} type="text"/>
+      <FormInput label="Пароль" callback={setPassword} type="password"/>
         <button type="button" className={styles.button} onClick={submit}>
           Войти
         </button>

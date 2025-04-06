@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import authService from "../../../services/authServise";
 import styles from './.module.css'
+import FormInput from "../../UI/FormInput/Input";
 
 const RegisterPage: React.FC = () => {
 
@@ -42,49 +43,12 @@ const RegisterPage: React.FC = () => {
       <div className={styles.card}>
         <h2>Регистрация</h2>
         <form>
-        <div className={styles.inputGroup}>
-            <label>ФИО</label>
-            <input
-            type="text"
-            required
-            onChange={(e) => setFullName(e.target.value)}/>
-          </div>
-          <div className={styles.inputGroup}>
-            <label>Почта</label>
-            <input 
-            type="email"
-            required
-            onChange={(e) => setEmail(e.target.value)}/>
-          </div>
-          <div className={styles.inputGroup}>
-            <label>Университет</label>
-            <input 
-            type="text"
-            required
-            onChange={(e) => setUniversity(e.target.value)}/>
-          </div>
-          <div className={styles.inputGroup}>
-            <label>Логин</label>
-            <input 
-            type="name"
-            required
-            onChange={(e) => setLogin(e.target.value)}/>
-          </div>
-          <div className={styles.inputGroup}>
-            <label>Пароль</label>
-            <input
-            type="password"
-            required
-            onChange={(e) => setPassword(e.target.value)}/>
-          </div>
-            <div className={styles.inputGroup}>
-              <label>Подтверждение пароля</label>
-              <input
-              type="password"
-              required
-              onChange={(e) => setConfirmPassword(e.target.value)}/>
-            </div>
-
+          <FormInput label="ФИО" callback={setFullName} type="text"/>
+          <FormInput label="Почта" callback={setEmail} type="email"/>
+          <FormInput label="Университет" callback={setUniversity} type="text"/>
+          <FormInput label="Логин" callback={setLogin} type="text"/>
+          <FormInput label="Пароль" callback={setPassword} type="password"/>
+          <FormInput label="Подтверждение пароля" callback={setConfirmPassword} type="password"/>
           <button type="button" className={styles.button} onClick={submit}>
             Зарегистрироваться
           </button>

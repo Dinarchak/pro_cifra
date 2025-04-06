@@ -5,7 +5,6 @@ import { useAuth } from "../../../provider/authProvider";
 
 export default function MainLayout() {
     const token = useAuth();
-    console.log(token.token)
     return (<>
       <header className={styles.header}>
         <div className={styles.headerDivider}>

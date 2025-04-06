@@ -1,7 +1,7 @@
 type User = {
     fullname: string;
     email: string;
-    type: string | null;    
+    role: string | null;    
 };
 
 export default User;

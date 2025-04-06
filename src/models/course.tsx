@@ -8,7 +8,7 @@ type Course = {
 
 export type AddCourse =  {
     major: string;
-    desription: string;
+    description: string;
     university: string;
     requirement: string;
 }

@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+:root {
+  /* 🎨 Цветовая палитра */
+  --color-primary: #4F46E5;
+  --color-accent: #10B981;
+  --color-background: #F9FAFB;
+  --color-surface: #FFFFFF;
+  --color-text: #111827;
+  --color-muted: #6B7280;
+  --color-error: #EF4444;
+
+  /* 🖋️ Шрифты */
+  --font-base: 'Inter', sans-serif;
+  --font-heading: 'Roboto Slab', serif;
+  --font-mono: 'Fira Code', monospace;
+
+  /* 📐 Размеры шрифта */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+}
+
+/* 🎯 Типографика */
+.bodyText {
+  font-family: var(--font-base);
+  font-size: var(--text-base);
+  color: var(--color-text);
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.caption {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+/* 🖍️ Цветовые утилиты */
+.textPrimary {
+  color: var(--color-primary);
+}
+
+.textAccent {
+  color: var(--color-accent);
+}
+
+.bgPrimary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.bgAccent {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+/* 🔘 Кнопки */
+.buttonPrimary {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: var(--text-base);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.buttonPrimary:hover {
+  background-color: #4338ca;
+}
+
+.buttonAccent {
+  background-color: var(--color-accent);
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: var(--text-base);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.buttonAccent:hover {
+  background-color: #059669;
+}
+
+/* 📦 Контейнер */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}

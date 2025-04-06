@@ -3,6 +3,7 @@ export interface RegisterData {
     fullname: string;
     password: string;
     name: string;
+    university: string;
 }
 
 export default interface LoginData {

@@ -8,6 +8,7 @@ const RegisterPage: React.FC = () => {
   const [fullname, setFullName] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState("");
+  const [university, setUniversity] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -21,7 +22,13 @@ const RegisterPage: React.FC = () => {
         }
 
         try {
-            const resp = await authService.register({email: email, password: password, fullname: fullname, name: login});
+            const resp = await authService.register({
+              email: email,
+              password: password,
+              fullname: fullname,
+              name: login,
+              university: university
+            });
             console.log("Запрос обработан")
         }
         catch {
@@ -48,6 +55,13 @@ const RegisterPage: React.FC = () => {
             type="email"
             required
             onChange={(e) => setEmail(e.target.value)}/>
+          </div>
+          <div className={styles.inputGroup}>
+            <label>Университет</label>
+            <input 
+            type="text"
+            required
+            onChange={(e) => setUniversity(e.target.value)}/>
           </div>
           <div className={styles.inputGroup}>
             <label>Логин</label>

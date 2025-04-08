@@ -10,7 +10,7 @@ type CourseCardType = {
 
 export default function CourseCard({course}: CourseCardType) {
     return (<>
-        <div className={styles.card}>
+        <div className={styles.card + " bodyText"}>
             <ObjectFields dataValues={course} dataNames={ProgramCardFieldNames}/>
         </div>
     </>);

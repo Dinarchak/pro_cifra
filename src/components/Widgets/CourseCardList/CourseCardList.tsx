@@ -17,7 +17,7 @@ export default function CourseCardList({list}: CourseCardListType) {
     </>)
 
     return (<>
-        <ul>
+        <ul className={styles.list}>
             {coursesList}
         </ul>
     </>);

@@ -1,0 +1,25 @@
+.textareaGroup {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+  
+.textareaGroup .label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+  
+.textareaGroup .textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+.textareaGroup .textarea:focus {
+    border-color: #3b82f6; /* blue-500 */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4); /* blue-500 ring */
+}
+
+.textareaGroup textarea {
+    resize: none;
+}

@@ -3,15 +3,12 @@ import style from "./.module.css";
 
 type ButtonType = {
     children: ReactNode,
-    callback: MouseEventHandler<HTMLButtonElement> | null,
+    callback: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export default function Button(props: ButtonType) {
-    if (props.callback) 
-        return (<>
-            <button className={style.button} type="submit" onClick={props.callback}>{props.children}</button>
-        </>)
+    
     return (<>
-        <button className={style.button} type="submit">{props.children}</button>
+        <button className={style.button} type="submit" onClick={props.callback}>{props.children}</button>
     </>)
 };

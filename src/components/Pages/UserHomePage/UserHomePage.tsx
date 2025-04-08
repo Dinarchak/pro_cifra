@@ -24,9 +24,13 @@ export default function UserHomePage() {
       const loadData = async () => {
         try {
           const data = await userService.getUser();
-          const coursesList_ = await courseService.getAllCoursesByUser();
           setUser(data);
-          setCoursesList(coursesList_);
+
+          if (user.role === 'mentor') {
+            const coursesList_ = await courseService.getAllCoursesByUser();
+            setCoursesList(coursesList_);
+          }
+
         } catch (error) {
           console.error("Ошибка при загрузке");
         }

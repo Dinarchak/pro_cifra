@@ -1,11 +1,10 @@
 .header a {
-    color: rgb(0, 0, 0);
+    color: var(--color-text);
     text-decoration: none;
 }
 
 header {
   padding: 20px 0;
-  background-color: var(--color-surface);
 }
 
 .logo {
@@ -14,7 +13,7 @@ header {
 
 .naviagation li {
   display: inline-block;
-  margin: 5px 10px;
+  margin: 0 10px;
 }
   
 .footer {
@@ -28,7 +27,7 @@ header {
 }
   
 .container {
-  margin: 10px 5vw 100px 0;
+  margin: 0 3vw 100px 3vw;
   background-color: var(--color-background);
 }
 
@@ -45,5 +44,5 @@ header {
   justify-self: start;
   flex-direction: row;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }

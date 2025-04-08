@@ -1,5 +1,5 @@
 const ProgramCardFieldNames = {
-    iduniversity: "Университет",
+    university: "Университет",
     major: "Направление",
     requirement: "Требования",
     description: "Описание"

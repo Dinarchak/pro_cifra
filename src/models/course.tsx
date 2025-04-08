@@ -2,7 +2,7 @@ type Course = {
     id: number;
     major: string;
     description: string;
-    iduniversity: number;
+    university: string;
     requirement: string;
 };
 

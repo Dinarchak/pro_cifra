@@ -6,7 +6,7 @@ import { useAuth } from "../../../provider/authProvider";
 export default function MainLayout() {
     const token = useAuth();
     return (<>
-      <header className={styles.header}>
+      <header className={styles.header + " heading"}>
         <div className={styles.headerDivider}>
           <div className={styles.leftHalf}>
           <h1 className={styles.logo}>Логотип</h1>
@@ -31,7 +31,7 @@ export default function MainLayout() {
           </div>
         </div>
       </header>
-      <div className={styles.container}>
+      <div className={styles.container + " .textPrimary"}>
         <Outlet/>
       </div>
     <footer className={styles.footer}>

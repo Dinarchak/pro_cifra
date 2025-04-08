@@ -1,3 +1,7 @@
 .courseCard {
     margin: 30px 0;
 }
+
+.list {
+    list-style-type: none;
+}

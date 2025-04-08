@@ -1,12 +1,15 @@
 .header a {
     color: rgb(0, 0, 0);
     text-decoration: none;
-    font-weight: bold;
+}
+
+header {
+  padding: 20px 0;
+  background-color: var(--color-surface);
 }
 
 .logo {
   margin: 5px 5px;
-  font-size: 2rem;
 }
 
 .naviagation li {
@@ -25,7 +28,8 @@
 }
   
 .container {
-  margin: 10px 5vw;
+  margin: 10px 5vw 100px 0;
+  background-color: var(--color-background);
 }
 
 .headerDivider {

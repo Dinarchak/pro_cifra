@@ -16,7 +16,7 @@ import Course from "../../../models/course";
 
 export default function UserHomePage() {
 
-    const [user, setUser] = useState<User>({email: "", fullname: "", role: null});
+    const [user, setUser] = useState<User>({email: "", fullname: "", role: null, university: null});
     const [coursesList, setCoursesList] = useState<Array<Course>>([]);
     const token = useAuth();
 

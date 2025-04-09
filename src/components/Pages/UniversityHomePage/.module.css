@@ -32,3 +32,26 @@
     margin: 5px 20px;
 
 }
+
+.lists {
+    display: flex;
+    align-items: start;
+    margin: 10px 0;
+}
+
+.mentors {
+    flex: 3;
+}
+
+.courses {
+    flex: 6;
+    margin: 0 15px;
+}
+
+.filters {
+    flex: 2;
+}
+
+.mentors > div {
+    margin: 0 0 10px 0;
+}

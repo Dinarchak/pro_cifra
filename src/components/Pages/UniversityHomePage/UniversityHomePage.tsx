@@ -3,9 +3,58 @@ import { useParams } from "react-router";
 import styles from "./.module.css";
 import CourseCardList from "../../Widgets/CourseCardList/CourseCardList";
 import Avatar from "../../UI/Avatar/avatar";
+import { useState, useEffect, useMemo } from "react";
+import Course from "../../../models/course";
+import courseService from "../../../services/courseService";
+import UserProfileLink from "../../Dummies/UserProfileLink/UserProfileLink";
+import FilterInput from "../../Widgets/Filter/FilterInput";
 
 export default function UniversityHomePage() {
     const {id} = {id : Number(useParams())};
+    const [filter, setFilter] = useState("");
+
+    const [coursesList, setCoursesList] = useState<Array<Course>>([]);
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+              const coursesList_ = await courseService.getAllCourses();
+              setCoursesList(coursesList_);
+            } catch (error) {
+              console.error("Ошибка при загрузке");
+            }
+          };
+        
+          loadData();
+    });
+
+    const filteredCards = useMemo(() => {
+        const res = coursesList.filter(course => course.major.toLowerCase().includes(filter.toLowerCase()))
+        console.log(coursesList, filter, res)
+        return res
+    }, [filter, coursesList]);
+
+    const mentors = [
+        {
+            name: "Владимир В.В.",
+            key: 1,
+            email: "mail@gmail.com"
+        },
+        {
+            name: "Владимир В.В.",
+            key: 2,
+            email: "mail@gmail.com"
+        },
+        {
+            name: "Владимир В.В.",
+            key: 3,
+            email: "mail@gmail.com"
+        },
+        {
+            name: "Владимир В.В.",
+            key: 4,
+            email: "mail@gmail.com"
+        }
+    ]
 
     return(<>
         <div className={styles.subHeader}>
@@ -22,12 +71,18 @@ export default function UniversityHomePage() {
         </div>
 
         <div className={styles.lists}>
-            <div>
-                {/* фильтры */}
+            <div className={styles.filters}>
+                <FilterInput filter={filter} onFilterChange={setFilter} placeholder="Поиск..."/>
             </div>
-            {/* <CourseCardList list={[]}/> */}
-            <div>
-                {/* менторы */}
+            <div className={styles.courses}>
+                <CourseCardList list={filteredCards}/>
+            </div>
+            <div className={styles.mentors}>
+                {mentors.map((mentor) => {
+                    return <div key={mentor.key}>
+                        <UserProfileLink id={mentor.key} name={mentor.name} email={mentor.email}/>
+                    </div>
+                })}
             </div>
         </div>
     </>);

@@ -42,7 +42,7 @@ export default function UserHomePage() {
 
     return (
         <>
-          <ObjectLabel avatar="" label={user.fullname}/>
+          <ObjectLabel label={user.fullname}/>
           <div>
             <ObjectFields dataNames={userShownFieldNames} dataValues={user}/>
           </div>

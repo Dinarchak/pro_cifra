@@ -5,8 +5,20 @@
     padding: 10px 0;
 }
 
+
+
 .label {
-    font-size: 1.8rem;
     font-weight: 400;
     padding-left: 20px;
+}
+
+.avatarContainer {
+    position: relative;
+    min-width: 3rem;
+}
+
+.avatarContainer > * {
+    position: absolute;
+    top: -3rem;
+    left: 0;
 }

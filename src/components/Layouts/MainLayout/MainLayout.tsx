@@ -12,7 +12,8 @@ export default function MainLayout() {
           <h1 className={styles.logo}>Логотип</h1>
           <nav className={styles.naviagation}>
             <ul>
-              <li><Link to="/">Главная</Link></li>
+              <li><Link to="/">Программы обмена</Link></li>
+              <li><Link to="/">Университеты</Link></li>
             </ul>
           </nav>
           </div>

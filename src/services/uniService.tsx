@@ -11,3 +11,5 @@ const uniSerivce = {
         return resp.data;
     }
 }
+
+export default uniSerivce;

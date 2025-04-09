@@ -20,12 +20,12 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    padding-left: 2rem;
+    padding: 0 0 10px 2rem;
 }
 
 .UniversityAvatar {
     align-self: flex-start;
-    margin-top: -2rem;
+    margin-top: -2.5rem;
 }
 
 .UniversityName {

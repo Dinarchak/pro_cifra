@@ -15,9 +15,9 @@ code {
 
 :root {
   /* 🎨 Цветовая палитра */
-  --color-primary: #4F46E5;
+  --color-primary: #6b66d6;
   --color-accent: #10B981;
-  --color-background: #F9FAFB;
+  --color-background: #f9fafbe6;
   --color-surface: #FFFFFF;
   --color-text: #111827;
   --color-ps: #374151;
@@ -25,7 +25,7 @@ code {
   --color-error: #EF4444;
 
   /* 🖋️ Шрифты */
-  --font-base: 'Inter', sans-serif;
+  --font-base: 'Nunito', sans-serif;
   --font-heading: 'Roboto Slab', serif;
   --font-mono: 'Fira Code', monospace;
 

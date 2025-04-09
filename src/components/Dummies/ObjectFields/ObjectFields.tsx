@@ -17,12 +17,14 @@ type ObjectFieldsType = {
 export default function ObjectFields({dataValues, dataNames}: ObjectFieldsType) {
     return (
         <div className={style.card}>
-            {Object.keys(dataNames).map((key) => (
-                <div key={key} className={style.field}>
-                    <InfoLabel>{dataNames[key]}:</InfoLabel>
-                    <InfoValue>{dataValues[key]}</InfoValue>
-                </div>
-            ))}
+            {Object.keys(dataNames).map((key) => {
+                if (dataValues[key] !== null) {
+                   return <div key={key} className={style.field}>
+                        <InfoLabel>{dataNames[key]}:</InfoLabel>
+                        <InfoValue>{dataValues[key]}</InfoValue>
+                    </div>
+                } 
+            })}
         </div>
     );
 }

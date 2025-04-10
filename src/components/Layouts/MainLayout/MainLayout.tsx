@@ -13,7 +13,7 @@ export default function MainLayout() {
           <nav className={styles.naviagation}>
             <ul>
               <li><Link to="/">Программы обмена</Link></li>
-              <li><Link to="/">Университеты</Link></li>
+              <li><Link to="/universities">Университеты</Link></li>
             </ul>
           </nav>
           </div>

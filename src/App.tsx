@@ -8,6 +8,7 @@ import UniversityHomePage from './components/Pages/UniversityHomePage/University
 
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import AuthProvider from './provider/authProvider';
+import UniList from './components/Pages/UniList/UniList';
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: 'university/:id',
         Component: UniversityHomePage
+      },
+      {
+        path: '/universities',
+        Component: UniList
       },
       {
         path: '/',

@@ -12,7 +12,11 @@ function get_correct_form(number: number): string {
     return "курса";
 }
 
-export default function UniCard(uni: University) {
+type UniCardType = {
+    obj: University
+};
+
+export default function UniCard({obj}: UniCardType) {
 
     let courses_str = "";
     for (let i = 0; i < Math.min(3, uni.giveCourseDTOList.length); ++i) {

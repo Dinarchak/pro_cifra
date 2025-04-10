@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Course from "../../../models/course";
 import courseService from "../../../services/courseService";
-import CourseCardList from "../../Widgets/CourseCardList/CourseCardList";
+import CourseCard from "../../Dummies/CourseCard/CourseCard";
+import CardList from "../../Widgets/CardList/CardList";
 
 export default function MainPage() {
 
@@ -19,6 +20,6 @@ export default function MainPage() {
           loadData();
     });
 
-    return <CourseCardList list={coursesList}/>;
+    return <CardList<Course> list={coursesList} Card={CourseCard}/>;
 }
 

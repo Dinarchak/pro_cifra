@@ -5,13 +5,13 @@ import ObjectFields from "../ObjectFields/ObjectFields";
 import ProgramCardFieldNames from "./constants"
 
 type CourseCardType = {
-    course: Course;
+    obj: Course;
 }
 
-export default function CourseCard({course}: CourseCardType) {
+export default function CourseCard({obj}: CourseCardType) {
     return (<>
         <div className={styles.card + " bodyText"}>
-            <ObjectFields dataValues={course} dataNames={ProgramCardFieldNames}/>
+            <ObjectFields dataValues={obj} dataNames={ProgramCardFieldNames}/>
         </div>
     </>);
 }

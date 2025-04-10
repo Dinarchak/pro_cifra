@@ -1,13 +1,13 @@
-import ObjectLabel from "../../Dummies/ObjectLabel/ObjectLabel";
 import { useParams } from "react-router";
 import styles from "./.module.css";
-import CourseCardList from "../../Widgets/CourseCardList/CourseCardList";
+import CardList from "../../Widgets/CardList/CardList";
 import Avatar from "../../UI/Avatar/avatar";
 import { useState, useEffect, useMemo } from "react";
 import Course from "../../../models/course";
 import courseService from "../../../services/courseService";
 import UserProfileLink from "../../Dummies/UserProfileLink/UserProfileLink";
 import FilterInput from "../../Widgets/Filter/FilterInput";
+import CourseCard from "../../Dummies/CourseCard/CourseCard";
 
 export default function UniversityHomePage() {
     const {id} = {id : Number(useParams())};
@@ -29,7 +29,6 @@ export default function UniversityHomePage() {
 
     const filteredCards = useMemo(() => {
         const res = coursesList.filter(course => course.major.toLowerCase().includes(filter.toLowerCase()))
-        console.log(coursesList, filter, res)
         return res
     }, [filter, coursesList]);
 
@@ -75,7 +74,7 @@ export default function UniversityHomePage() {
                 <FilterInput filter={filter} onFilterChange={setFilter} placeholder="Поиск..."/>
             </div>
             <div className={styles.courses}>
-                <CourseCardList list={filteredCards}/>
+                <CardList<Course> list={filteredCards} Card={CourseCard}/>
             </div>
             <div className={styles.mentors}>
                 {mentors.map((mentor) => {

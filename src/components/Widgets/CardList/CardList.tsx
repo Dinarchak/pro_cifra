@@ -4,15 +4,16 @@ import courseService from "../../../services/courseService";
 import CourseCard from "../../Dummies/CourseCard/CourseCard";
 import styles from "./.module.css";
 
-type CourseCardListType = {
-    list: Array<Course>;
+type CardListType<T extends {id: number}> = {
+    list: Array<T>,
+    Card: React.ComponentType<{obj: T}>;
 }
 
-export default function CourseCardList({list}: CourseCardListType) {
+export default function CardList<T extends {id: number}>({list, Card}: CardListType<T>) {
 
-    const coursesList = list.map(course => <>
-        <li key={course.id} className={styles.courseCard}>
-            <CourseCard course={course}/>
+    const coursesList = list.map(obj => <>
+        <li key={obj.id} className={styles.courseCard}>
+            <Card obj={obj}/>
         </li>
     </>)
 

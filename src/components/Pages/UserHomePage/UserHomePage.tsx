@@ -49,7 +49,7 @@ export default function UserHomePage() {
           {user.role === 'mentor' ? 
           <>
             <CourseForm/>
-            <CourseCardList list={coursesList}/>
+            <CardList<Course> list={coursesList} Card={CourseCard}/>
           </>
           : <></>}
         

@@ -4,6 +4,8 @@
     color: var(--color-surface);
     padding: 12px;
     font-family: var(--font-base);
+
+    display: flex;
 }
 
 .container a {
@@ -11,9 +13,17 @@
     color: var(--color-text);
 }
 
+.title {
+    margin: 0;
+}
+
 .subtitle {
     padding: 0;
     margin: 4px 0 7px 0;
     font-size: var(--font-small);
     color: var(--color-ps);
+}
+
+.bio {
+    margin-left: 15px;
 }

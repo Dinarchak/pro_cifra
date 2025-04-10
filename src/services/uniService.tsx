@@ -1,6 +1,6 @@
 import api from "./api";
 
-const uniSerivce = {
+const uniService = {
     getAllUniversities: async () => {
         const resp = await api.get('uni/all');
         return resp.data;
@@ -12,4 +12,4 @@ const uniSerivce = {
     }
 }
 
-export default uniSerivce;
+export default uniService;

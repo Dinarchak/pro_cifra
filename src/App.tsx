@@ -9,6 +9,7 @@ import UniversityHomePage from './components/Pages/UniversityHomePage/University
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AuthProvider from './provider/authProvider';
 import UniList from './components/Pages/UniList/UniList';
+import UserPage from './components/Pages/UserPage/UserPage';
 
 
 const router = createBrowserRouter([
@@ -36,8 +37,8 @@ const router = createBrowserRouter([
         Component: MainPage
       },
       {
-        path: '/profile/:id',
-        Component: UserHomePage
+        path: '/user/:id',
+        Component: UserPage
       },
       {
         Component: ProtectedRoute,

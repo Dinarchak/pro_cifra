@@ -1,0 +1,44 @@
+.userInfo {
+    padding: 20px;
+    margin: 0 0 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: var(--color-surface);
+    font-size: x-large;
+    font-family: var(--font-base);
+}
+
+.userHeader > div {
+    margin: 0 10px;
+}
+
+.userHeader {
+    display: flex;
+    align-items: center;
+}
+
+.coursesList {
+    padding: 20px;
+    margin: 0 0 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: var(--color-surface);
+    font-family: var(--font-base);
+    position: relative;
+    min-height: 2rem;
+}
+
+.addCourseBtn {
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    border: none;
+    background: none;
+    right: 5px;
+    top: 5px
+}
+
+.addCourseBtn > img {
+    width: 2rem;
+    height: 2rem;
+}

@@ -4,26 +4,32 @@ import CardList from "../../Widgets/CardList/CardList";
 import Avatar from "../../UI/Avatar/avatar";
 import { useState, useEffect, useMemo } from "react";
 import Course from "../../../models/course";
-import courseService from "../../../services/courseService";
+import uniService from "../../../services/uniService";
 import UserProfileLink from "../../Dummies/UserProfileLink/UserProfileLink";
 import FilterInput from "../../Widgets/Filter/FilterInput";
 import CourseCard from "../../Dummies/CourseCard/CourseCard";
+import User from "../../../models/user";
 
 export default function UniversityHomePage() {
-    const {id} = {id : Number(useParams())};
-    const [filter, setFilter] = useState("");
+    const id = Number(useParams().id);
+    console.log(id)
 
+    const [filter, setFilter] = useState("");
     const [coursesList, setCoursesList] = useState<Array<Course>>([]);
+    const [mentors, setMentors] = useState<Array<User>>([]);
+    const [uniName, setUniName] = useState("");
+
     useEffect(() => {
         const loadData = async () => {
             try {
-              const coursesList_ = await courseService.getAllCourses();
-              setCoursesList(coursesList_);
+              const uni = await uniService.getUniversityUnifo({id});
+              setCoursesList(uni.giveCourseDTOList);
+              setMentors(uni.giveUserDTOList);
+              setUniName(uni.university)
             } catch (error) {
-              console.error("Ошибка при загрузке");
+              console.error("Ошибка при загрузке", error);
             }
           };
-        
           loadData();
     });
 
@@ -31,29 +37,6 @@ export default function UniversityHomePage() {
         const res = coursesList.filter(course => course.major.toLowerCase().includes(filter.toLowerCase()))
         return res
     }, [filter, coursesList]);
-
-    const mentors = [
-        {
-            name: "Владимир В.В.",
-            key: 1,
-            email: "mail@gmail.com"
-        },
-        {
-            name: "Владимир В.В.",
-            key: 2,
-            email: "mail@gmail.com"
-        },
-        {
-            name: "Владимир В.В.",
-            key: 3,
-            email: "mail@gmail.com"
-        },
-        {
-            name: "Владимир В.В.",
-            key: 4,
-            email: "mail@gmail.com"
-        }
-    ]
 
     return(<>
         <div className={styles.subHeader}>
@@ -64,7 +47,7 @@ export default function UniversityHomePage() {
                 <div className={styles.UniversityAvatar}>
                 <Avatar size={6} image_path="https://patykids.ru/wp-content/uploads/260-estetichnyh-avatarok-tolko-samye-krasivye-00522bb.jpg"/>
                 </div>
-                <p className={styles.UniversityName}>ИТМО</p>
+                <p className={styles.UniversityName}>{uniName}</p>
             </div>
             {/*возможно удалю компонент для тайтла объекта*/}
         </div>
@@ -78,8 +61,8 @@ export default function UniversityHomePage() {
             </div>
             <div className={styles.mentors}>
                 {mentors.map((mentor) => {
-                    return <div key={mentor.key}>
-                        <UserProfileLink id={mentor.key} name={mentor.name} email={mentor.email}/>
+                    return <div key={mentor.id}>
+                        <UserProfileLink id={mentor.id} name={mentor.fullname} email={mentor.email}/>
                     </div>
                 })}
             </div>

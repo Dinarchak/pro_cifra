@@ -16,12 +16,22 @@ import CourseCard from "../../Dummies/CourseCard/CourseCard";
 import Avatar from "../../UI/Avatar/avatar";
 import CardList from "../../Widgets/CardList/CardList";
 
+import Modal from 'react-bootstrap/Modal';
+
+import style from "./.module.css"
+import plus from "../../../static/add_24dp_111827_FILL0_wght400_GRAD0_opsz24.svg"
+
 
 export default function UserHomePage() {
 
     const [user, setUser] = useState<User>({email: "", fullname: "", role: null, university: null, id: -1});
     const [coursesList, setCoursesList] = useState<Array<Course>>([]);
     const [avatar, setAvatarBlob] = useState();
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+  
     const token = useAuth();
 
     useEffect(() => {
@@ -37,7 +47,6 @@ export default function UserHomePage() {
             const coursesList_ = await courseService.getAllCoursesByUser();
             setCoursesList(coursesList_);
           }
-
         } catch (error) {
           console.error("Ошибка при загрузке", error);
         }
@@ -49,15 +58,30 @@ export default function UserHomePage() {
 
     return (
         <>
-          <Avatar size={4} blob={avatar}/>
-          <ObjectLabel label={user.fullname}/>
-          <div>
-            <ObjectFields dataNames={userShownFieldNames} dataValues={user}/>
+          <div className={style.userInfo}>
+            <div className={style.userHeader}>
+              <Avatar size={5} blob={avatar}/>
+              <ObjectLabel label={user.fullname}/>
+            </div>
+            <div>
+              <ObjectFields dataNames={userShownFieldNames} dataValues={user}/>
+            </div>
           </div>
           {user.role === 'mentor' ? 
           <>
-            <CourseForm/>
-            <CardList<Course> list={coursesList} Card={CourseCard}/>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Создание программы межвузового обмена</Modal.Title>
+              </Modal.Header>
+              <Modal.Body><CourseForm/></Modal.Body>
+            </Modal>
+
+            
+
+            <div className={style.coursesList}>
+              <button className={style.addCourseBtn} onClick={handleShow}><img src={plus}/></button>
+              {coursesList.length == 0 ?  <p style={{textAlign: 'center', color: 'var(--color-muted)'}}>Здесь пока ничего нет</p> : <CardList<Course> list={coursesList} Card={CourseCard}/>}
+            </div>
           </>
           : <></>}
         

@@ -21,11 +21,19 @@ type UniCardType = {
 
 export default function UniCard({obj}: UniCardType) {
     const [avatar, setAvatarBlob] = useState();
+    const [background, setBackgroundUrl] = useState("");
 
     useEffect(() => {
         const loadData = async () => {
             try {
                 const avatar_ = await uniService.getUniversityAvatar(obj.id);
+                const background_blob = await uniService.getUniversityBackground(obj.id);
+                if (background_blob !== undefined) {
+                    setBackgroundUrl(URL.createObjectURL(background_blob))
+                } else {
+                    setBackgroundUrl("");
+                }
+
                 setAvatarBlob(avatar_);
             } catch {
                 
@@ -57,7 +65,7 @@ export default function UniCard({obj}: UniCardType) {
                 <p className={style.courses}>{courses_str}</p>
             </div>
             <div className={style.photo}>
-                <img src="https://avatars.mds.yandex.net/i?id=c14545ffcb5e55a037d9972947ec2f38a3fab30d-12482695-images-thumbs&n=13"/>
+                <img src={background}/>
             </div>
         </div>
     </>;

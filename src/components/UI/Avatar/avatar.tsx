@@ -1,16 +1,20 @@
 import style from "./.module.css";
 
 type AvatarType = {
-    image_path: string,
+    blob: any | null,
     size: number
 }
 
-export default function Avatar({image_path, size=4}:AvatarType) {
+export default function Avatar({blob, size=4}:AvatarType) {
     const logo_size = size.toString() + "rem";
+
+    console.log(blob);
 
     return (
     <div className={style.container} style={{height: logo_size, width: logo_size}}>
-        <img className={style.avatar} src={image_path}/>
+        {
+            blob === undefined ? <></> : <img className={style.avatar} src={URL.createObjectURL(blob)}/>   
+        }
     </div>
     );
 }

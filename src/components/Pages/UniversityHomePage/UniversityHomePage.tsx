@@ -12,21 +12,19 @@ import User from "../../../models/user";
 
 export default function UniversityHomePage() {
     const id = Number(useParams().id);
-    console.log(id)
 
     const [filter, setFilter] = useState("");
     const [coursesList, setCoursesList] = useState<Array<Course>>([]);
     const [mentors, setMentors] = useState<Array<User>>([]);
     const [uniName, setUniName] = useState("");
-    const [avatarUrl, setAvatarUrl] = useState("");
+    const [avatar, setAvatarBlob] = useState();
 
     useEffect(() => {
         const loadData = async () => {
             try {
-                const uni = await uniService.getUniversityUnifo(id);
+                const uni = await uniService.getUniversityInfo(id);
                 const avatar_blob = await uniService.getUniversityAvatar(id);
-
-                setAvatarUrl(URL.createObjectURL(avatar_blob));
+                setAvatarBlob(avatar_blob);
                 setCoursesList(uni.giveCourseDTOList);
                 setMentors(uni.giveUserDTOList);
                 setUniName(uni.university)
@@ -49,7 +47,7 @@ export default function UniversityHomePage() {
             </div>
             <div className={styles.UniversityTitle}>
                 <div className={styles.UniversityAvatar}>
-                <Avatar size={6} image_path={avatarUrl}/>
+                <Avatar size={6} blob={avatar}/>
                 </div>
                 <p className={styles.UniversityName}>{uniName}</p>
             </div>

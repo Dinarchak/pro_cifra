@@ -21,7 +21,7 @@ export default function UserHomePage() {
 
     const [user, setUser] = useState<User>({email: "", fullname: "", role: null, university: null, id: -1});
     const [coursesList, setCoursesList] = useState<Array<Course>>([]);
-    const [avatarUrl, setAvatarUrl] = useState("");
+    const [avatar, setAvatarBlob] = useState();
     const token = useAuth();
 
     useEffect(() => {
@@ -30,9 +30,8 @@ export default function UserHomePage() {
           const data = await userService.getUser();
           setUser(data);
 
-          const avatar = await userService.getUserAvatar(user.id);
-          const avatarUrl_ = URL.createObjectURL(avatar);
-          setAvatarUrl(avatarUrl_);
+          const avatar_ = await userService.getUserAvatar(user.id);
+          setAvatarBlob(avatar_);
 
           if (user.role === 'mentor') {
             const coursesList_ = await courseService.getAllCoursesByUser();
@@ -50,7 +49,7 @@ export default function UserHomePage() {
 
     return (
         <>
-          <Avatar size={4} image_path={avatarUrl}/>
+          <Avatar size={4} blob={avatar}/>
           <ObjectLabel label={user.fullname}/>
           <div>
             <ObjectFields dataNames={userShownFieldNames} dataValues={user}/>

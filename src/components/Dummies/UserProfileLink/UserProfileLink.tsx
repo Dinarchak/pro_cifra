@@ -14,20 +14,19 @@ type UserProfileLinkType = {
 
 export default function UserProfileLink({id, name, email, avatar}: UserProfileLinkType) {
 
-    const [avatarUrl, setAvatarUrl] = useState("");
+    const [avatarUrl, setAvatarBlob] = useState();
 
     useEffect(() => {
         const loadData = async () => {
-            const avatar = await userService.getUserAvatar(id);
-            const avatarUrl_ = URL.createObjectURL(avatar);
-            setAvatarUrl(avatarUrl_);
+            const avatar_ = await userService.getUserAvatar(id);
+            setAvatarBlob(avatar_);
         }
     })
 
     
     return <>
         <div className={style.container}>
-            <Avatar size={5} image_path={avatarUrl === "" ? default_avatar : avatarUrl}/>
+            <Avatar size={5} blob={avatar}/>
             <div className={style.bio}>
                 <Link to={`/user/${id}`}>
                     <h3 className={style.title}>{name}</h3>

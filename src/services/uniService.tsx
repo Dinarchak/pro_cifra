@@ -6,7 +6,7 @@ const uniService = {
         return resp.data;
     },
 
-    getUniversityUnifo: async (id: number) => {
+    getUniversityInfo: async (id: number) => {
         const resp = await api.get(`uni/${id}`);
         return resp.data;
     },

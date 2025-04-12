@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 import University from "../../../models/university";
 import Avatar from "../../UI/Avatar/avatar";
+import uniService from "../../../services/uniService";
+import { useEffect, useState } from "react";
 import style from "./.module.css";
 
 function get_correct_form(number: number): string {
@@ -18,6 +20,20 @@ type UniCardType = {
 };
 
 export default function UniCard({obj}: UniCardType) {
+    const [avatar, setAvatarBlob] = useState();
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const avatar_ = await uniService.getUniversityAvatar(obj.id);
+                setAvatarBlob(avatar_);
+            } catch {
+                
+            }
+        }
+
+        loadData();
+    })
 
     let courses_str = "";
     for (let i = 0; i < Math.min(3, obj.giveCourseDTOList.length); ++i) {
@@ -34,7 +50,7 @@ export default function UniCard({obj}: UniCardType) {
     return <>
         <div className={style.card}>
             <div className={style.uniAvatar}>
-                <Avatar image_path="https://avatars.mds.yandex.net/i?id=45379510be7254a216b9b148c628954943ca18e0-2455126-images-thumbs&n=13" size={4}/>
+                <Avatar blob={avatar} size={4}/>
             </div>
             <div className={style.desc}>
                 <Link to={`/university/${obj.id}`}><h3 className={style.name}>{obj.university}</h3></Link>

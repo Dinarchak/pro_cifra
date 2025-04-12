@@ -1,6 +1,6 @@
 import styles from "./.module.css";
 import ProfileIcon from "../../UI/ProficeIcon/ProfileIcon";
-import {Outlet, Link} from "react-router";
+import {Outlet, Link} from "react-router-dom";
 import { useAuth } from "../../../provider/authProvider";
 
 export default function MainLayout() {

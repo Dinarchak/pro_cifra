@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import University from "../../../models/university";
 import Avatar from "../../UI/Avatar/avatar";
 import uniService from "../../../services/uniService";

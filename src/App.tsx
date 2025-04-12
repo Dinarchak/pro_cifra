@@ -6,7 +6,7 @@ import ProtectedRoute from './components/Layouts/ProtectedRoute';
 import MainPage from './components/Pages/MainPage/MainPage';
 import UniversityHomePage from './components/Pages/UniversityHomePage/UniversityHomePage';
 
-import { createBrowserRouter, RouterProvider } from 'react-router';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AuthProvider from './provider/authProvider';
 import UniList from './components/Pages/UniList/UniList';
 

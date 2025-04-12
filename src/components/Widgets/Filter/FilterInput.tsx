@@ -14,6 +14,7 @@ const FilterInput: React.FC<FilterInputProps> = ({
 }) => {
   return (
     <FormInput
+      value={filter}
       type="text"
       label="Поиск"
       callback={onFilterChange}

@@ -9,6 +9,11 @@ const userService = {
     getUserAvatar: async(id: number) => {
         const resp = await api.get(`/photo/user/${id}`, {responseType: 'blob'});
         return resp.data;
+    },
+
+    getUserById: async(id: number) => {
+        const resp = await api.get(`user/${id}`)
+        return resp.data;
     }
 };
 

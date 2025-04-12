@@ -14,6 +14,11 @@ const uniService = {
     getUniversityAvatar: async (id: number) => {
         const resp = await api.get(`photo/university/avatar/${id}`, {responseType: 'blob'});
         return resp.data;
+    },
+
+    getUniversityBackground: async (id: number) => {
+        const resp = await api.get(`photo/university/header/${id}`, {responseType: 'blob'});
+        return resp.data
     }
 }
 

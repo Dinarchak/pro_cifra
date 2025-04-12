@@ -18,16 +18,20 @@ export default function UniversityHomePage() {
     const [mentors, setMentors] = useState<Array<User>>([]);
     const [uniName, setUniName] = useState("");
     const [avatar, setAvatarBlob] = useState();
+    const [background, setBackgroundURL] = useState("");
 
     useEffect(() => {
         const loadData = async () => {
             try {
                 const uni = await uniService.getUniversityInfo(id);
                 const avatar_blob = await uniService.getUniversityAvatar(id);
+                const background_blob = await uniService.getUniversityBackground(id);
+                if (background_blob !== undefined)
+                    setBackgroundURL(URL.createObjectURL(background_blob));
                 setAvatarBlob(avatar_blob);
                 setCoursesList(uni.giveCourseDTOList);
                 setMentors(uni.giveUserDTOList);
-                setUniName(uni.university)
+                setUniName(uni.university);
             } catch (error) {
                 console.error("Ошибка при загрузке", error);
             }
@@ -43,7 +47,7 @@ export default function UniversityHomePage() {
     return(<>
         <div className={styles.subHeader}>
             <div className={styles.coverImage}>
-                <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pixelstalk.net%2Fwp-content%2Fuploads%2F2016%2F03%2FSunset-wallpaper-desktop.jpg&f=1&nofb=1&ipt=8bf9c6cec789588f255e1b66174450713a52e2f1cdfc3cc94da334e4dc2b4727"/>
+                <img src={background}/>
             </div>
             <div className={styles.UniversityTitle}>
                 <div className={styles.UniversityAvatar}>

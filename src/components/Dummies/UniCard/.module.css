@@ -16,6 +16,7 @@
 
 .photo {
     overflow: hidden;
+    min-height: 20vh;
 }
 
 .photo img {

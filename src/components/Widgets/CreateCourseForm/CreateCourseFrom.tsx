@@ -28,7 +28,7 @@ export default function CourseForm() {
 
     return (
         <form className={styles.form}>
-            <h2 className={styles.title}>Создание программы межвузового обмена</h2>
+            {/* <h2 className={styles.title}>Создание программы межвузового обмена</h2> */}
 
             <FormInput label="Университет" callback={setUniversity} type="text"/>
             <FormInput label="Специальность" callback={setMajor} type="text"/>

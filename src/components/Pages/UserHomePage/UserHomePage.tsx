@@ -43,7 +43,7 @@ export default function UserHomePage() {
           const avatar_ = await userService.getUserAvatar(user.id);
           setAvatarBlob(avatar_);
 
-          if (user.role === 'mentor') {
+          if (user.role !== null) {
             const coursesList_ = await courseService.getAllCoursesByUser();
             setCoursesList(coursesList_);
           }
@@ -67,7 +67,7 @@ export default function UserHomePage() {
               <ObjectFields dataNames={userShownFieldNames} dataValues={user}/>
             </div>
           </div>
-          {user.role === 'mentor' ? 
+          {user.role !== null ? 
           <>
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>

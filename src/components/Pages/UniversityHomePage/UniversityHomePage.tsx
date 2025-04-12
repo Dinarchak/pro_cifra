@@ -18,16 +18,20 @@ export default function UniversityHomePage() {
     const [coursesList, setCoursesList] = useState<Array<Course>>([]);
     const [mentors, setMentors] = useState<Array<User>>([]);
     const [uniName, setUniName] = useState("");
+    const [avatarUrl, setAvatarUrl] = useState("");
 
     useEffect(() => {
         const loadData = async () => {
             try {
-              const uni = await uniService.getUniversityUnifo({id});
-              setCoursesList(uni.giveCourseDTOList);
-              setMentors(uni.giveUserDTOList);
-              setUniName(uni.university)
+                const uni = await uniService.getUniversityUnifo(id);
+                const avatar_blob = await uniService.getUniversityAvatar(id);
+
+                setAvatarUrl(URL.createObjectURL(avatar_blob));
+                setCoursesList(uni.giveCourseDTOList);
+                setMentors(uni.giveUserDTOList);
+                setUniName(uni.university)
             } catch (error) {
-              console.error("Ошибка при загрузке", error);
+                console.error("Ошибка при загрузке", error);
             }
           };
           loadData();
@@ -45,7 +49,7 @@ export default function UniversityHomePage() {
             </div>
             <div className={styles.UniversityTitle}>
                 <div className={styles.UniversityAvatar}>
-                <Avatar size={6} image_path="https://patykids.ru/wp-content/uploads/260-estetichnyh-avatarok-tolko-samye-krasivye-00522bb.jpg"/>
+                <Avatar size={6} image_path={avatarUrl}/>
                 </div>
                 <p className={styles.UniversityName}>{uniName}</p>
             </div>

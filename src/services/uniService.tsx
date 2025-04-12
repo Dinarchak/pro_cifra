@@ -6,8 +6,13 @@ const uniService = {
         return resp.data;
     },
 
-    getUniversityUnifo: async ({id}: {id: number}) => {
+    getUniversityUnifo: async (id: number) => {
         const resp = await api.get(`uni/${id}`);
+        return resp.data;
+    },
+
+    getUniversityAvatar: async (id: number) => {
+        const resp = await api.get(`photo/university/avatar/${id}`, {responseType: 'blob'});
         return resp.data;
     }
 }

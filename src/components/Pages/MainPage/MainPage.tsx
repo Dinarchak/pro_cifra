@@ -20,6 +20,6 @@ export default function MainPage() {
           loadData();
     });
 
-    return <CardList<Course> list={coursesList} Card={CourseCard}/>;
+    return <div style={{margin: "auto", maxWidth: "60vw"}}><CardList<Course> list={coursesList} Card={CourseCard}/></div>;
 }
 

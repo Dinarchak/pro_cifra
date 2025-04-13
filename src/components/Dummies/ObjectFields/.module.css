@@ -1,11 +1,14 @@
 .card {
     padding: 5px;
     font-size: 1rem;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
-.field {
-    display: flex;
-    justify-content: start;
-    align-items: center;
+.field{
     margin: 5px;
+}
+
+.field > * {
+    display: inline-block;
 }

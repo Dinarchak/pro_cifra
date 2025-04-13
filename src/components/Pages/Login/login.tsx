@@ -28,8 +28,8 @@ const LoginPage: React.FC = () => {
     <div className={styles.card}>
       <h2>Вход</h2>
       <form>
-      <FormInput label="Логин" callback={setLogin} type="text"/>
-      <FormInput label="Пароль" callback={setPassword} type="password"/>
+      <FormInput label="Логин" callback={setLogin} type="text" value={login}/>
+      <FormInput label="Пароль" callback={setPassword} type="password" value={password}/>
         <button type="button" className={styles.button} onClick={submit}>
           Войти
         </button>

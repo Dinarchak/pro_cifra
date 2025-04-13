@@ -1,18 +1,33 @@
 import { useEffect } from "react";
 
 function usePooling(delay: number, callback:() => Promise<any>) {
-    let cancelled = false;
     useEffect(() => {
+        let curDelay = delay;
+        let cancelled = false;
+        let retries = 0;
+        const maxRetries = 10;
+        const retryDelay = 100;
         const loadData = async () => {
             try {
                 await callback();
-                if (!cancelled) setTimeout(loadData, delay);
+                retries = 0;
+                curDelay = delay;
             } catch(error) {
-                console.log('Ошибка загрузки', error)
-                if (!cancelled) setTimeout(loadData, delay);
+
+                if (retries >= 10) {
+                    console.warn('Достигнуто максимальное количество попыток отправки запроса. Останавливаю пуллинг.')
+                    return;
+                }
+
+                retries++;
+                curDelay = retryDelay
+                console.log(`Ошибка загрузки (${retries} / ${maxRetries})`, error)
+            } finally {
+                if (!cancelled) {
+                    setTimeout(loadData, curDelay);
+                }
             }
         }
-
         loadData();
 
         return () => { cancelled = true;};

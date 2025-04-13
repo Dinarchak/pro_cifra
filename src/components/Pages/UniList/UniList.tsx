@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
 import uniService from "../../../services/uniService";
 import University from "../../../models/university";
 import CardList from "../../Widgets/CardList/CardList";
@@ -11,10 +11,12 @@ export default function UniList() {
   const [uniList, setUniList] = useState<Array<University>>([]);
   const [filter, setFilter] = useState("");
 
-  usePooling(60000, async () => {
+  const fetchData = useCallback(async () => {
     const uniList_ = await uniService.getAllUniversities();
     setUniList(uniList_);
-  });
+  }, []);
+
+  usePooling(60000, fetchData);
 
   const filteredList = useMemo(() => {
     const res = uniList.filter(uni => uni.university.toLowerCase().includes(filter.toLowerCase()))

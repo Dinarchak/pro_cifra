@@ -15,7 +15,6 @@ const RegisterPage: React.FC = () => {
 
   async function submit(props: React.FormEvent) {
         setError("");
-        // console.log(password, confirmPassword);
         if (password !== confirmPassword) {
             setError("Пароли не совпадают");
             console.error("Пароли не совпадают");
@@ -43,12 +42,12 @@ const RegisterPage: React.FC = () => {
       <div className={styles.card}>
         <h2>Регистрация</h2>
         <form>
-          <FormInput label="ФИО" callback={setFullName} type="text"/>
-          <FormInput label="Почта" callback={setEmail} type="email"/>
-          <FormInput label="Университет" callback={setUniversity} type="text"/>
-          <FormInput label="Логин" callback={setLogin} type="text"/>
-          <FormInput label="Пароль" callback={setPassword} type="password"/>
-          <FormInput label="Подтверждение пароля" callback={setConfirmPassword} type="password"/>
+          <FormInput label="ФИО" callback={setFullName} type="text" value={fullname}/>
+          <FormInput label="Почта" callback={setEmail} type="email" value={email}/>
+          <FormInput label="Университет" callback={setUniversity} type="text" value={university}/>
+          <FormInput label="Логин" callback={setLogin} type="text" value={login}/>
+          <FormInput label="Пароль" callback={setPassword} type="password" value={password}/>
+          <FormInput label="Подтверждение пароля" callback={setConfirmPassword} type="password" value={confirmPassword}/>
           <button type="button" className={styles.button} onClick={submit}>
             Зарегистрироваться
           </button>

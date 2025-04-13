@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import userService from "../../../services/userService";
 import Avatar from "../../UI/Avatar/avatar";
 import style from "./.module.css";
@@ -15,11 +15,12 @@ type UserProfileLinkType = {
 export default function UserProfileLink({id, name, email}: UserProfileLinkType) {
 
     const [avatar, setAvatarBlob] = useState();
-
-    usePooling(60000, async () => {
+    const fetchData = useCallback(async () => {
         const avatar_ = await userService.getUserAvatar(id);
-        setAvatarBlob(avatar_);
-    })
+        setAvatarBlob(avatar_)
+    }, [])
+
+    usePooling(60000, fetchData)
     
     return <>
         <div className={style.container}>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Course from "../../../models/course";
 import courseService from "../../../services/courseService";
 import CourseCard from "../../Dummies/CourseCard/CourseCard";
@@ -6,6 +6,7 @@ import CardList from "../../Widgets/CardList/CardList";
 import styles from "./.module.css";
 import CourseCardListFilter from "../../Widgets/CourseCardListFilter/CourseCardFilter";
 import usePooling from "../../../hooks/usePooling";
+
 
 export default function MainPage() {
 
@@ -16,10 +17,12 @@ export default function MainPage() {
 
     const [coursesList, setCoursesList] = useState<Array<Course>>([]);
 
-    usePooling(60000, async () => {
+    const fetchData = useCallback(async () => {
       const coursesList_ = await courseService.getAllCourses();
       setCoursesList(coursesList_);
-    })
+    }, []);
+
+    usePooling(60000, fetchData);
 
     const fitleredList = useMemo(() => {
       return coursesList.filter((course) => {

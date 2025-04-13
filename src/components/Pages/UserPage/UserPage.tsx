@@ -3,10 +3,8 @@ import { roles } from "./constants";
 
 import ObjectFields from "../../Dummies/ObjectFields/ObjectFields";
 import ObjectLabel from "../../Dummies/ObjectLabel/ObjectLabel";
-import CourseForm from "../../Widgets/CreateCourseForm/CreateCourseFrom";
-import Button from "../../UI/Button/Button";
 
-import { useEffect , useState } from "react";
+import { useCallback , useState } from "react";
 import userService from "../../../services/userService";
 import { useAuth } from "../../../provider/authProvider";
 
@@ -35,7 +33,7 @@ export default function UserPage() {
   
     const token = useAuth();
 
-    usePooling(60000, async () => {
+    const fetchData = useCallback(async () => {
       const data = await userService.getUserById(id);
       setUser(data);
 
@@ -46,7 +44,9 @@ export default function UserPage() {
         const coursesList_ = await courseService.getAllCourses();
         setCoursesList(coursesList_);
       }
-    });
+    }, []);
+
+    usePooling(60000, fetchData);
 
     return <>
         <div className={style.userInfo}>

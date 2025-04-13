@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import styles from "./.module.css";
 import CardList from "../../Widgets/CardList/CardList";
 import Avatar from "../../UI/Avatar/avatar";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
 import Course from "../../../models/course";
 import uniService from "../../../services/uniService";
 import UserProfileLink from "../../Dummies/UserProfileLink/UserProfileLink";
@@ -22,7 +22,7 @@ export default function UniversityHomePage() {
     const [avatar, setAvatarBlob] = useState();
     const [background, setBackgroundURL] = useState("");
 
-    usePooling(60000, async () => {
+    const fetchData = useCallback(async () => {
         const uni = await uniService.getUniversityInfo(id);
         const avatar_blob = await uniService.getUniversityAvatar(id);
         const background_blob = await uniService.getUniversityBackground(id);
@@ -32,7 +32,9 @@ export default function UniversityHomePage() {
         setCoursesList(uni.giveCourseDTOList);
         setMentors(uni.giveUserDTOList);
         setUniName(uni.university);
-    })
+    }, []);
+
+    usePooling(60000, fetchData);
 
     const filteredCards = useMemo(() => {
         const res = coursesList.filter(course => { return (

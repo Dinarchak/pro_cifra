@@ -5,7 +5,7 @@ import ObjectLabel from "../../Dummies/ObjectLabel/ObjectLabel";
 import CourseForm from "../../Widgets/CreateCourseForm/CreateCourseFrom";
 import Button from "../../UI/Button/Button";
 
-import { useEffect , useState } from "react";
+import { useCallback , useState } from "react";
 import userService from "../../../services/userService";
 import { useAuth } from "../../../provider/authProvider";
 import usePooling from "../../../hooks/usePooling";
@@ -35,18 +35,20 @@ export default function UserHomePage() {
   
     const token = useAuth();
 
-    usePooling(60000, async () => {
+    const fetchData = useCallback(async () => {
       const data = await userService.getUser();
-      setUser(data);
+      setUser(user => data);
 
-      const avatar_ = await userService.getUserAvatar(user.id);
+      const avatar_ = await userService.getUserAvatar(data.id);
       setAvatarBlob(avatar_);
 
-      if (user.role !== null) {
+      if (data.role !== null) {
         const coursesList_ = await courseService.getAllCoursesByUser();
         setCoursesList(coursesList_);
       }
-    })
+    }, []);
+
+    usePooling(60000, fetchData);
 
     return (
         <>

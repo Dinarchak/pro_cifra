@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import University from "../../../models/university";
 import Avatar from "../../UI/Avatar/avatar";
 import uniService from "../../../services/uniService";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import style from "./.module.css";
 import usePooling from "../../../hooks/usePooling";
 
@@ -24,7 +24,7 @@ export default function UniCard({obj}: UniCardType) {
     const [avatar, setAvatarBlob] = useState();
     const [background, setBackgroundUrl] = useState("");
 
-    usePooling(60000, async () => {
+    const fetchData = useCallback(async () => {
         const avatar_ = await uniService.getUniversityAvatar(obj.id);
         const background_blob = await uniService.getUniversityBackground(obj.id);
         if (background_blob !== undefined) {
@@ -34,7 +34,9 @@ export default function UniCard({obj}: UniCardType) {
         }
 
         setAvatarBlob(avatar_);
-    })
+    }, []);
+
+    usePooling(60000, fetchData);
 
     let courses_str = "";
     for (let i = 0; i < Math.min(3, obj.giveCourseDTOList.length); ++i) {

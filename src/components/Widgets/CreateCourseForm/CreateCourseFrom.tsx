@@ -10,14 +10,21 @@ export default function CourseForm() {
     const [university, setUniversity] = useState("");
     const [major, setMajor] = useState("");
     const [requirement, setRequirements] = useState("");
+    const [min_score, setMinScore] = useState("0");
+    const [course_code, setCourseCode] = useState("");
 
     const submit = () => {
+
+        console.log(min_score)
+
         try {
             const resp = courseService.addCourse({
                 major: major,
                 university: university,
                 requirement: requirement,
-                description: description
+                description: description,
+                minscore: Number(min_score),
+                coursecode: course_code
             })
             console.log("Запрос принят.");
         } catch {
@@ -32,6 +39,8 @@ export default function CourseForm() {
 
             <FormInput label="Университет" callback={setUniversity} type="text"/>
             <FormInput label="Специальность" callback={setMajor} type="text"/>
+            <FormInput label="Код специальности" callback={setMinScore} type="text"/>
+            <FormInput label="Минимальный средний бал" callback={setMinScore} type="number"/>
             <FormTextarea label="Описание" callback={setDesc}/>
             <FormTextarea label="Требования" callback={setRequirements}/>
             

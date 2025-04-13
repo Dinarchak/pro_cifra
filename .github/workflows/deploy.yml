@@ -12,6 +12,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Use Node.js 20.16.0
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.16.0'
+      - name: build
+        run: npm ci && npm run build
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - name: build image

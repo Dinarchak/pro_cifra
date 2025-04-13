@@ -11,6 +11,7 @@ type FormInputType = {
 export default function FormInput({label, callback, type, value, placeholder}: FormInputType) {
 
     const listener = (e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log(e.target.value)
       callback(e.target.value);
     }
 

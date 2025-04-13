@@ -20,6 +20,8 @@ export default function UserProfileLink({id, name, email}: UserProfileLinkType) 
             const avatar_ = await userService.getUserAvatar(id);
             setAvatarBlob(avatar_);
         }
+
+        loadData();
     })
 
     

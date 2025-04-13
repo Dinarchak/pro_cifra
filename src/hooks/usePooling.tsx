@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-function usePooling(delay: number, callback:() => Promise<any>) {
+function usePooling(delay: number, callback:() => Promise<void>) {
     useEffect(() => {
         let curDelay = delay;
         let cancelled = false;

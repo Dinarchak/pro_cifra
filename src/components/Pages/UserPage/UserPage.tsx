@@ -37,10 +37,10 @@ export default function UserPage() {
       const data = await userService.getUserById(id);
       setUser(data);
 
-      const avatar_ = await userService.getUserAvatar(user.id);
+      const avatar_ = await userService.getUserAvatar(data.id);
       setAvatarBlob(avatar_);
       if (user.role !== null) {
-        user.role = roles[user.role];
+        data.role = roles[user.role];
         const coursesList_ = await courseService.getAllCourses();
         setCoursesList(coursesList_);
       }

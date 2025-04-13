@@ -48,7 +48,7 @@ export default function UserHomePage() {
       }
     }, []);
 
-    usePooling(60000, fetchData);
+    usePooling(10000, fetchData);
 
     return (
         <>
@@ -61,13 +61,13 @@ export default function UserHomePage() {
               <ObjectFields dataNames={userShownFieldNames} dataValues={user}/>
             </div>
           </div>
-          {user.role !== null ? 
+          {user.role !== null && user.university !== null? 
           <>
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Создание программы межвузового обмена</Modal.Title>
               </Modal.Header>
-              <Modal.Body><CourseForm/></Modal.Body>
+              <Modal.Body><CourseForm university={user.university}/></Modal.Body>
             </Modal>
 
             

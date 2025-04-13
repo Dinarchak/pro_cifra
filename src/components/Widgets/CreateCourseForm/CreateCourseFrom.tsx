@@ -4,10 +4,9 @@ import courseService from "../../../services/courseService";
 import FormInput from "../../UI/FormInput/Input";
 import FormTextarea from "../../UI/FormTextArea/FormTextArea";
 
-export default function CourseForm() {
+export default function CourseForm({university}: {university: string}) {
 
     const [description, setDesc] = useState("");
-    const [university, setUniversity] = useState("");
     const [major, setMajor] = useState("");
     const [requirement, setRequirements] = useState("");
     const [min_score, setMinScore] = useState("0");
@@ -37,10 +36,9 @@ export default function CourseForm() {
         <form className={styles.form}>
             {/* <h2 className={styles.title}>Создание программы межвузового обмена</h2> */}
 
-            <FormInput label="Университет" callback={setUniversity} type="text"/>
-            <FormInput label="Специальность" callback={setMajor} type="text"/>
-            <FormInput label="Код специальности" callback={setMinScore} type="text"/>
-            <FormInput label="Минимальный средний бал" callback={setMinScore} type="number"/>
+            <FormInput label="Специальность" callback={setMajor} type="text" value={major}/>
+            <FormInput label="Код специальности" callback={setCourseCode} type="text" value={course_code}/>
+            <FormInput label="Минимальный средний бал" callback={setMinScore} type="number" value={min_score}/>
             <FormTextarea label="Описание" callback={setDesc}/>
             <FormTextarea label="Требования" callback={setRequirements}/>
             

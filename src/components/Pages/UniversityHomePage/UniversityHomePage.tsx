@@ -34,7 +34,7 @@ export default function UniversityHomePage() {
         setUniName(uni.university);
     }, []);
 
-    usePooling(60000, fetchData);
+    usePooling(10000, fetchData);
 
     const filteredCards = useMemo(() => {
         const res = coursesList.filter(course => { return (

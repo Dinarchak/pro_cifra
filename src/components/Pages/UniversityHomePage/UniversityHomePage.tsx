@@ -9,11 +9,13 @@ import UserProfileLink from "../../Dummies/UserProfileLink/UserProfileLink";
 import FilterInput from "../../Widgets/Filter/FilterInput";
 import CourseCard from "../../Dummies/CourseCard/CourseCard";
 import User from "../../../models/user";
+import CourseCardListFilter from "../../Widgets/CourseCardListFilter/CourseCardFilter";
 
 export default function UniversityHomePage() {
     const id = Number(useParams().id);
 
-    const [filter, setFilter] = useState("");
+    const [courseNameFilter, setCourseNameFilter] = useState("");
+    const [courseMinScoreFilter, setCourseMinScoreFilter] = useState("0");
     const [coursesList, setCoursesList] = useState<Array<Course>>([]);
     const [mentors, setMentors] = useState<Array<User>>([]);
     const [uniName, setUniName] = useState("");
@@ -40,9 +42,11 @@ export default function UniversityHomePage() {
     });
 
     const filteredCards = useMemo(() => {
-        const res = coursesList.filter(course => course.major.toLowerCase().includes(filter.toLowerCase()))
+        const res = coursesList.filter(course => { return (
+            course.major.toLowerCase().includes(courseNameFilter.toLowerCase()) &&
+            course.minscore <= Number(courseMinScoreFilter)) })
         return res
-    }, [filter, coursesList]);
+    }, [courseNameFilter, courseMinScoreFilter, coursesList]);
 
     return(<>
         <div className={styles.subHeader}>
@@ -60,7 +64,11 @@ export default function UniversityHomePage() {
 
         <div className={styles.lists}>
             <div className={styles.filters}>
-                <FilterInput filter={filter} onFilterChange={setFilter} placeholder="Поиск..."/>
+                <CourseCardListFilter
+                onNameChange={setCourseNameFilter}
+                name={courseNameFilter}
+                onMinScoreChange={setCourseMinScoreFilter}
+                minscore={courseMinScoreFilter}/>
             </div>
             <div className={styles.courses}>
                 <CardList<Course> list={filteredCards} Card={CourseCard}/>

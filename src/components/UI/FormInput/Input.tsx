@@ -8,19 +8,18 @@ type FormInputType = {
   callback: (value: string) => void;
 };
 
-export default function FormInput({label, callback, type, value, placeholder}: FormInputType) {
+export default function FormInput(props: FormInputType) {
 
     const listener = (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(e.target.value)
-      callback(e.target.value);
+      props.callback(e.target.value);
     }
 
     return <div className={styles.inputGroup}>
-              <label>{label}</label>
+              <label>{props.label}</label>
               <input
-                value={value}
-                placeholder={placeholder}
-                type={type}
+                value={props.value ? props.value : ""}
+                placeholder={props.placeholder ? props.placeholder : ""}
+                type={props.type}
                 required
                 onChange={listener}/>
             </div>

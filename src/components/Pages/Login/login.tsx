@@ -14,7 +14,7 @@ const LoginPage: React.FC = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
-  async function submit(e: any) {
+  async function submit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     try {
         const resp = await authService.login({password: password, name: login});
         token.setToken(resp);

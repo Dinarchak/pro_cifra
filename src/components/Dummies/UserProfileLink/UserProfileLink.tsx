@@ -9,12 +9,11 @@ type UserProfileLinkType = {
     id: number,
     name: string,
     email: string,
-    avatar?: string
 }
 
-export default function UserProfileLink({id, name, email, avatar}: UserProfileLinkType) {
+export default function UserProfileLink({id, name, email}: UserProfileLinkType) {
 
-    const [avatarUrl, setAvatarBlob] = useState();
+    const [avatar, setAvatarBlob] = useState();
 
     useEffect(() => {
         const loadData = async () => {

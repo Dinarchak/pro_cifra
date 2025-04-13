@@ -35,8 +35,8 @@ export default function UniCard({obj}: UniCardType) {
                 }
 
                 setAvatarBlob(avatar_);
-            } catch {
-                
+            } catch(error) {
+              console.log('Ошибка загрузки', error)  
             }
         }
 

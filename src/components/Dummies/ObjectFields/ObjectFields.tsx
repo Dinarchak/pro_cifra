@@ -6,7 +6,7 @@ type FieldNames = {
 };
 
 type FieldValues = {
-    [key: string]: any
+    [key: string]: string | number | null | undefined;
 }
 
 type ObjectFieldsType = {
@@ -18,7 +18,7 @@ export default function ObjectFields({dataValues, dataNames}: ObjectFieldsType) 
     return (
         <div className={style.card}>
             {Object.keys(dataNames).map((key) => {
-                if (dataValues[key] !== null) {
+                if (dataValues[key] !== null && dataValues[key] !== undefined) {
                    return <div key={key} className={style.field}>
                         <InfoLabel>{dataNames[key]}:</InfoLabel>
                         <InfoValue>{dataValues[key]}</InfoValue>

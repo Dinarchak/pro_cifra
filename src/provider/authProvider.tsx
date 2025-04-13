@@ -2,11 +2,11 @@ import { useContext, createContext, useState, useEffect, useMemo} from "react";
 import api from "../services/api";
 import { AuthContextType } from "../models/auth";
 
-const AuthContext = createContext<AuthContextType>({token: null, setToken: () => {}});
+const AuthContext = createContext<AuthContextType>({token: null, setToken: () => {return;}});
 
 
 
-const AuthProvider = ({children}:any) => {
+const AuthProvider = ({children}: {children: React.ReactNode}) => {
     const [token, setToken_] = useState<string | null>(localStorage.getItem('token') ?? null);
 
     const setToken = (newToken: string | null) => {

@@ -1,7 +1,7 @@
 import style from "./.module.css";
 
 type AvatarType = {
-    blob: any | null,
+    blob: Blob | undefined,
     size: number
 }
 

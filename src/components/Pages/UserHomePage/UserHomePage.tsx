@@ -8,6 +8,7 @@ import Button from "../../UI/Button/Button";
 import { useEffect , useState } from "react";
 import userService from "../../../services/userService";
 import { useAuth } from "../../../provider/authProvider";
+import usePooling from "../../../hooks/usePooling";
 
 import User from "../../../models/user";
 import courseService from "../../../services/courseService";
@@ -34,27 +35,18 @@ export default function UserHomePage() {
   
     const token = useAuth();
 
-    useEffect(() => {
-      const loadData = async () => {
-        try {
-          const data = await userService.getUser();
-          setUser(data);
+    usePooling(60000, async () => {
+      const data = await userService.getUser();
+      setUser(data);
 
-          const avatar_ = await userService.getUserAvatar(user.id);
-          setAvatarBlob(avatar_);
+      const avatar_ = await userService.getUserAvatar(user.id);
+      setAvatarBlob(avatar_);
 
-          if (user.role !== null) {
-            const coursesList_ = await courseService.getAllCoursesByUser();
-            setCoursesList(coursesList_);
-          }
-        } catch (error) {
-          console.error("Ошибка при загрузке", error);
-        }
-      };
-    
-      loadData();
-    });
-
+      if (user.role !== null) {
+        const coursesList_ = await courseService.getAllCoursesByUser();
+        setCoursesList(coursesList_);
+      }
+    })
 
     return (
         <>

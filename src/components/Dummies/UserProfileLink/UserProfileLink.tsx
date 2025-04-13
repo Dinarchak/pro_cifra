@@ -4,6 +4,7 @@ import Avatar from "../../UI/Avatar/avatar";
 import style from "./.module.css";
 import { Link } from "react-router-dom";
 import default_avatar from "../../../static/user-svgrepo-com.svg";
+import usePooling from "../../../hooks/usePooling";
 
 type UserProfileLinkType = {
     id: number,
@@ -15,15 +16,10 @@ export default function UserProfileLink({id, name, email}: UserProfileLinkType) 
 
     const [avatar, setAvatarBlob] = useState();
 
-    useEffect(() => {
-        const loadData = async () => {
-            const avatar_ = await userService.getUserAvatar(id);
-            setAvatarBlob(avatar_);
-        }
-
-        loadData();
+    usePooling(60000, async () => {
+        const avatar_ = await userService.getUserAvatar(id);
+        setAvatarBlob(avatar_);
     })
-
     
     return <>
         <div className={style.container}>

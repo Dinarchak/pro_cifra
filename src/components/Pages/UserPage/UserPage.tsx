@@ -18,7 +18,9 @@ import Avatar from "../../UI/Avatar/avatar";
 import CardList from "../../Widgets/CardList/CardList";
 
 import { useParams } from "react-router";
-import style from "./.module.css"
+import usePooling from "../../../hooks/usePooling";
+
+import style from "./.module.css";
 
 export default function UserPage() {
     const id = Number(useParams().id)
@@ -33,28 +35,17 @@ export default function UserPage() {
   
     const token = useAuth();
 
-    useEffect(() => {
-      const loadData = async () => {
-        try {
-          const data = await userService.getUserById(id);
-          setUser(data);
+    usePooling(60000, async () => {
+      const data = await userService.getUserById(id);
+      setUser(data);
 
-          const avatar_ = await userService.getUserAvatar(user.id);
-          setAvatarBlob(avatar_);
-
-          
-
-          if (user.role !== null) {
-            user.role = roles[user.role];
-            const coursesList_ = await courseService.getAllCourses();
-            setCoursesList(coursesList_);
-          }
-        } catch (error) {
-          console.error("Ошибка при загрузке", error);
-        }
-      };
-    
-      loadData();
+      const avatar_ = await userService.getUserAvatar(user.id);
+      setAvatarBlob(avatar_);
+      if (user.role !== null) {
+        user.role = roles[user.role];
+        const coursesList_ = await courseService.getAllCourses();
+        setCoursesList(coursesList_);
+      }
     });
 
     return <>

@@ -1,7 +1,7 @@
 const ProgramCardFieldNames = {
     university: "Университет",
     major: "Направление",
-    minscore: "Минимальный средний бал",
+    minscore: "Минимальный средний балл",
     requirement: "Требования",
     description: "Описание",
 };

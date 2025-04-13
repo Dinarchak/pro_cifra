@@ -4,6 +4,7 @@ import Avatar from "../../UI/Avatar/avatar";
 import uniService from "../../../services/uniService";
 import { useEffect, useState } from "react";
 import style from "./.module.css";
+import usePooling from "../../../hooks/usePooling";
 
 function get_correct_form(number: number): string {
     if ((5 <= number % 100 && number % 100 <= 19) || (number % 10 === 0)) {
@@ -23,24 +24,16 @@ export default function UniCard({obj}: UniCardType) {
     const [avatar, setAvatarBlob] = useState();
     const [background, setBackgroundUrl] = useState("");
 
-    useEffect(() => {
-        const loadData = async () => {
-            try {
-                const avatar_ = await uniService.getUniversityAvatar(obj.id);
-                const background_blob = await uniService.getUniversityBackground(obj.id);
-                if (background_blob !== undefined) {
-                    setBackgroundUrl(URL.createObjectURL(background_blob))
-                } else {
-                    setBackgroundUrl("");
-                }
-
-                setAvatarBlob(avatar_);
-            } catch(error) {
-              console.log('Ошибка загрузки', error)  
-            }
+    usePooling(60000, async () => {
+        const avatar_ = await uniService.getUniversityAvatar(obj.id);
+        const background_blob = await uniService.getUniversityBackground(obj.id);
+        if (background_blob !== undefined) {
+            setBackgroundUrl(URL.createObjectURL(background_blob))
+        } else {
+            setBackgroundUrl("");
         }
 
-        loadData();
+        setAvatarBlob(avatar_);
     })
 
     let courses_str = "";

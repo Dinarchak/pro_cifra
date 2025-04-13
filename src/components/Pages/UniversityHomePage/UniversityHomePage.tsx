@@ -6,10 +6,10 @@ import { useState, useEffect, useMemo } from "react";
 import Course from "../../../models/course";
 import uniService from "../../../services/uniService";
 import UserProfileLink from "../../Dummies/UserProfileLink/UserProfileLink";
-import FilterInput from "../../Widgets/Filter/FilterInput";
 import CourseCard from "../../Dummies/CourseCard/CourseCard";
 import User from "../../../models/user";
 import CourseCardListFilter from "../../Widgets/CourseCardListFilter/CourseCardFilter";
+import usePooling from "../../../hooks/usePooling";
 
 export default function UniversityHomePage() {
     const id = Number(useParams().id);
@@ -22,24 +22,17 @@ export default function UniversityHomePage() {
     const [avatar, setAvatarBlob] = useState();
     const [background, setBackgroundURL] = useState("");
 
-    useEffect(() => {
-        const loadData = async () => {
-            try {
-                const uni = await uniService.getUniversityInfo(id);
-                const avatar_blob = await uniService.getUniversityAvatar(id);
-                const background_blob = await uniService.getUniversityBackground(id);
-                if (background_blob !== undefined)
-                    setBackgroundURL(URL.createObjectURL(background_blob));
-                setAvatarBlob(avatar_blob);
-                setCoursesList(uni.giveCourseDTOList);
-                setMentors(uni.giveUserDTOList);
-                setUniName(uni.university);
-            } catch (error) {
-                console.error("Ошибка при загрузке", error);
-            }
-          };
-          loadData();
-    });
+    usePooling(60000, async () => {
+        const uni = await uniService.getUniversityInfo(id);
+        const avatar_blob = await uniService.getUniversityAvatar(id);
+        const background_blob = await uniService.getUniversityBackground(id);
+        if (background_blob !== undefined)
+            setBackgroundURL(URL.createObjectURL(background_blob));
+        setAvatarBlob(avatar_blob);
+        setCoursesList(uni.giveCourseDTOList);
+        setMentors(uni.giveUserDTOList);
+        setUniName(uni.university);
+    })
 
     const filteredCards = useMemo(() => {
         const res = coursesList.filter(course => { return (

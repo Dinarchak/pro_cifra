@@ -34,7 +34,7 @@ export default function UniCard({obj}: UniCardType) {
         }
 
         setAvatarBlob(avatar_);
-    }, []);
+    }, [obj]);
 
     usePooling(60000, fetchData);
 

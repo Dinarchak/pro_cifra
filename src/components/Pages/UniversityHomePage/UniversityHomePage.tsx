@@ -32,7 +32,7 @@ export default function UniversityHomePage() {
         setCoursesList(uni.giveCourseDTOList);
         setMentors(uni.giveUserDTOList);
         setUniName(uni.university);
-    }, []);
+    }, [id]);
 
     usePooling(10000, fetchData);
 

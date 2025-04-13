@@ -26,11 +26,6 @@ export default function UserPage() {
     const [user, setUser] = useState<User>({email: "", fullname: "", role: null, university: null, id: -1});
     const [coursesList, setCoursesList] = useState<Array<Course>>([]);
     const [avatar, setAvatarBlob] = useState();
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-  
     const token = useAuth();
 
     const fetchData = useCallback(async () => {
@@ -39,12 +34,12 @@ export default function UserPage() {
 
       const avatar_ = await userService.getUserAvatar(data.id);
       setAvatarBlob(avatar_);
-      if (user.role !== null) {
-        data.role = roles[user.role];
+      if (data.role !== null) {
+        data.role = roles[data.role];
         const coursesList_ = await courseService.getAllCourses();
         setCoursesList(coursesList_);
       }
-    }, []);
+    }, [id]);
 
     usePooling(60000, fetchData);
 
@@ -66,7 +61,7 @@ export default function UserPage() {
 
         {user.role !== null ? <>
             <div className={style.coursesList}>
-            <h3>Курируемые программы</h3>
+            <h3 style={{marginBottom: "25px"}}>Курируемые программы</h3>
               {coursesList.length == 0 ?  <p style={{textAlign: 'center', color: 'var(--color-muted)'}}>Здесь пока ничего нет</p> : <CardList<Course> list={coursesList} Card={CourseCard}/>}
             </div>   
         </> : <></>}

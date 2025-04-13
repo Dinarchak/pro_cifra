@@ -18,7 +18,7 @@ export default function UserProfileLink({id, name, email}: UserProfileLinkType) 
     const fetchData = useCallback(async () => {
         const avatar_ = await userService.getUserAvatar(id);
         setAvatarBlob(avatar_)
-    }, [])
+    }, [id])
 
     usePooling(60000, fetchData)
     

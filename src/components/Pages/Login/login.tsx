@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../../provider/authProvider";
 import { useNavigate } from "react-router";
 import styles from "./.module.css"
-import authService from "../../../services/authServise";
+import authService from "../../../services/authService";
 import FormInput from "../../UI/FormInput/Input";
 
 

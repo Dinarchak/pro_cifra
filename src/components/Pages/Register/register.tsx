@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import authService from "../../../services/authServise";
+import authService from "../../../services/authService";
 import styles from './.module.css'
 import FormInput from "../../UI/FormInput/Input";
 

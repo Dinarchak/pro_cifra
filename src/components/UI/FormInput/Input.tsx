@@ -1,7 +1,7 @@
 import styles from "./.module.css"
 
 type FormInputType = {
-  label: string,
+  label?: string,
   type: string,
   value?: string,
   placeholder?: string,
@@ -15,7 +15,7 @@ export default function FormInput(props: FormInputType) {
     }
 
     return <div className={styles.inputGroup}>
-              <label>{props.label}</label>
+              {props.label && <label>{props.label}</label>}
               <input
                 value={props.value ? props.value : ""}
                 placeholder={props.placeholder ? props.placeholder : ""}

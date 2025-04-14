@@ -16,11 +16,13 @@ import Course from "../../../models/course";
 import CourseCard from "../../Dummies/CourseCard/CourseCard";
 import Avatar from "../../UI/Avatar/avatar";
 import CardList from "../../Widgets/CardList/CardList";
+import AddMentorForm from "../../Widgets/AddMentorForm/AddMentorForm";
 
 import Modal from 'react-bootstrap/Modal';
 
-import style from "./.module.css"
-import plus from "../../../static/add_24dp_111827_FILL0_wght400_GRAD0_opsz24.svg"
+import style from "./.module.css";
+import plus from "../../../static/add.svg";
+import add_person from "../../../static/person_add.svg";
 
 
 export default function UserHomePage() {
@@ -28,16 +30,20 @@ export default function UserHomePage() {
     const [user, setUser] = useState<User>({email: "", fullname: "", role: null, university: null, id: -1});
     const [coursesList, setCoursesList] = useState<Array<Course>>([]);
     const [avatar, setAvatarBlob] = useState();
-    const [show, setShow] = useState(false);
+    const [showCourseForm, setShowCourseForm] = useState(false);
+    const [showMentorForm, setShowMentorForm] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleCloseCourseForm = () => setShowCourseForm(false);
+    const handleShowCourseForm = () => setShowCourseForm(true);
+
+    const handleCloseMentorForm = () => setShowMentorForm(false);
+    const handleOpenMentorForm = () => setShowMentorForm(true);
   
     const token = useAuth();
 
     const fetchData = useCallback(async () => {
       const data = await userService.getUser();
-      setUser(user => data);
+      setUser(data);
 
       const avatar_ = await userService.getUserAvatar(data.id);
       setAvatarBlob(avatar_);
@@ -60,20 +66,34 @@ export default function UserHomePage() {
             <div>
               <ObjectFields dataNames={userShownFieldNames} dataValues={user}/>
             </div>
+            <div className={style.manageMenu}>
+              <button className={style.addBtn} onClick={handleShowCourseForm}><img src={plus}/></button>
+              {
+                user.role === "creator" &&
+                <button className={style.addBtn} onClick={handleOpenMentorForm}><img src={add_person}/></button>
+              }
+            </div>
           </div>
-          {user.role !== null && user.university !== null? 
+
+          {user.role === "creator" ?
+            <Modal show={showMentorForm} onHide={handleCloseMentorForm}>
+              <Modal.Header closeButton>
+                <Modal.Title>Новый куратор</Modal.Title>
+              </Modal.Header>
+              <Modal.Body><AddMentorForm/></Modal.Body>
+            </Modal> : <></>
+          }
+
+          {user.role !== null && user.university !== null ? 
           <>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={showCourseForm} onHide={handleCloseCourseForm}>
               <Modal.Header closeButton>
                 <Modal.Title>Создание программы межвузового обмена</Modal.Title>
               </Modal.Header>
               <Modal.Body><CourseForm university={user.university}/></Modal.Body>
             </Modal>
 
-            
-
             <div className={style.coursesList}>
-              <button className={style.addCourseBtn} onClick={handleShow}><img src={plus}/></button>
               {coursesList.length == 0 ?  <p style={{textAlign: 'center', color: 'var(--color-muted)'}}>Здесь пока ничего нет</p> : <CardList<Course> list={coursesList} Card={CourseCard}/>}
             </div>
           </>

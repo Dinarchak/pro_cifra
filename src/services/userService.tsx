@@ -14,6 +14,12 @@ const userService = {
     getUserById: async(id: number) => {
         const resp = await api.get(`user/${id}`)
         return resp.data;
+    },
+    getUsersByFullname: async(fullname: string) => {
+        const resp = await api.get(`user/getByString`, {params: {user: fullname}});
+        console.log(resp.data);
+
+        return resp;
     }
 };
 

@@ -16,6 +16,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.16.0'
+      - name: recreate api.tsx
+        run: |
+          cat <<EOF > src/services/api.tsx
+          import axios from "axios";
+          const api = axios.create({
+            baseURL: "http://82.202.142.224:8080/",
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
+          export default api;
+          EOF
       - name: build
         run: npm ci && npm run build
       - name: Log in to Docker Hub

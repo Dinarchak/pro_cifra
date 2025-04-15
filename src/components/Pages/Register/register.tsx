@@ -1,7 +1,16 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import authService from "../../../services/authService";
 import styles from './.module.css'
 import FormInput from "../../UI/FormInput/Input";
+import Select, { SingleValue } from "react-select";
+import uniService from "../../../services/uniService";
+import University from "../../../models/university";
+import usePooling from "../../../hooks/usePooling";
+
+type OptionType = {
+  value: string,
+  label: string
+}
 
 const RegisterPage: React.FC = () => {
 
@@ -9,9 +18,20 @@ const RegisterPage: React.FC = () => {
   const [fullname, setFullName] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState("");
-  const [university, setUniversity] = useState("");
+  const [university, setUniversity] = useState<OptionType | null>(null);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [universities, setUniversities] = useState<OptionType[]>([]);
+
+  const fetchData = useCallback(async () => {
+    const data: University[] = await uniService.getAllUniversities();
+    const options: OptionType[] = data.map((uni) => {
+     return {value: uni.university, label: uni.university}
+    });
+    setUniversities(options);
+  }, [])
+
+  usePooling(10000, fetchData);
 
   async function submit(props: React.FormEvent) {
         setError("");
@@ -27,7 +47,7 @@ const RegisterPage: React.FC = () => {
               password: password,
               fullname: fullname,
               name: login,
-              university: university
+              university: university ? university.value : ""
             });
             console.log("Запрос обработан")
         }
@@ -44,7 +64,18 @@ const RegisterPage: React.FC = () => {
         <form>
           <FormInput label="ФИО" callback={setFullName} type="text" value={fullname}/>
           <FormInput label="Почта" callback={setEmail} type="email" value={email}/>
-          <FormInput label="Университет" callback={setUniversity} type="text" value={university}/>
+          <div className={styles.inputGroup}>
+            <label>Университет</label>
+            <div className={styles.field}>
+              <Select<OptionType>
+              options={universities}
+              value={university}
+              placeholder="СПбГУ"
+              onChange={(selected: SingleValue<OptionType>) => {setUniversity(selected)}}
+              isClearable
+              required/>
+            </div>
+          </div>
           <FormInput label="Логин" callback={setLogin} type="text" value={login}/>
           <FormInput label="Пароль" callback={setPassword} type="password" value={password}/>
           <FormInput label="Подтверждение пароля" callback={setConfirmPassword} type="password" value={confirmPassword}/>

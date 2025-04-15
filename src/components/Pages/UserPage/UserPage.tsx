@@ -46,7 +46,7 @@ export default function UserPage() {
     return <>
         <div className={style.userInfo}>
             <div className={style.userHeader}>
-              <Avatar size={5} blob={avatar}/>
+              <Avatar size={5} blob={avatar} enabled={false}/>
               <ObjectLabel label={user.fullname}/>
             </div>
             <div>

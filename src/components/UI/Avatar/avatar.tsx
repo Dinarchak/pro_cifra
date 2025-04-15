@@ -1,17 +1,67 @@
 import style from "./.module.css";
+import upload from "../../../static/upload_file.svg";
+import { useEffect, useState, useRef } from 'react';
 
 type AvatarType = {
-    blob: Blob | undefined,
-    size: number
+    blob?: Blob,
+    size: number,
+    enabled: boolean
+    updateAvatar?: (file: File) => Promise<void>
 }
 
-export default function Avatar({blob, size=4}:AvatarType) {
-    const logo_size = size.toString() + "rem";
-    return (
-    <div className={style.container} style={{height: logo_size, width: logo_size}}>
-        {
-            blob === undefined ? <></> : <img className={style.avatar} src={URL.createObjectURL(blob)}/>   
+const Avatar: React.FC<AvatarType> = (props: AvatarType) => {
+  const [objectUrl, setObjectUrl] = useState<string | null>(null);
+  const [blob_, setBlob] = useState<Blob | null>(props.blob ? props.blob : null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleIconClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+        console.log('Выбран файл:', file);
+        setBlob(file);
+        if (props.updateAvatar) {
+            console.log("вызвал функцию")
+            await props.updateAvatar(file);
         }
+    }
+  };
+
+  useEffect(() => {
+    setBlob(props.blob ? props.blob : null);
+  }, [props.blob])
+
+  useEffect(() => {
+    if (blob_) {
+        const url = URL.createObjectURL(blob_);
+        setObjectUrl(url);
+
+
+        return () => {
+            URL.revokeObjectURL(url);
+        };
+    }
+  }, [blob_]);
+
+  return (
+    <div className={style.container} style={{ height: `${props.size}rem`, width: `${props.size}rem` }}>
+      {objectUrl && (
+        <img className={props.enabled ? style.avatar : style.constAvatar} src={objectUrl} alt="Аватар"/>
+      )}
+      {props.enabled && <>
+      <img className={style.iconOverlay} src={upload} onClick={handleIconClick}/>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
+      /></>}
     </div>
-    );
-}
+  );
+};
+
+export default Avatar;

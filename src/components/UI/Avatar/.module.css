@@ -1,12 +1,44 @@
 .container {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
     border-radius: 50%;
+    position: relative;
 }
 
 .avatar {
     object-fit: cover;
     height: 100%;
     width: 100%;
-    margin: auto;
+}
+
+.constAvatar {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.container:hover .avatar{
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+}
+
+.iconOverlay {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    color: white;
+    font-size: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+  
+.container:hover .iconOverlay {
+    opacity: 1;
+    pointer-events: all;
+    cursor: pointer;
 }

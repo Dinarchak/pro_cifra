@@ -20,7 +20,7 @@ export default function UserToMentorCard({user}: {user: User}) {
 
     return <div className={styles.container}>
         <div className={styles.label}>
-            <Avatar size={3} blob={avatar}/>
+            <Avatar size={3} blob={avatar} enabled={false}/>
             <p>{user.fullname}</p>
         </div>
         <button className={styles.doMentorBtn} onClick={async (e) => {

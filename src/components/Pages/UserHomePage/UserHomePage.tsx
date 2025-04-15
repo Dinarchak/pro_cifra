@@ -60,14 +60,18 @@ export default function UserHomePage() {
         <>
           <div className={style.userInfo}>
             <div className={style.userHeader}>
-              <Avatar size={5} blob={avatar}/>
+              <Avatar size={5} blob={avatar} enabled={Boolean(token.token)} updateAvatar={async (file: File) => {
+                  await userService.setUserAvater({user_id: user.id, file: file})
+                }}/>
               <ObjectLabel label={user.fullname}/>
             </div>
             <div>
               <ObjectFields dataNames={userShownFieldNames} dataValues={user}/>
             </div>
             <div className={style.manageMenu}>
+              { (user.role === "creator" || user.role === "mentor") &&
               <button className={style.addBtn} onClick={handleShowCourseForm}><img src={plus}/></button>
+              }
               {
                 user.role === "creator" &&
                 <button className={style.addBtn} onClick={handleOpenMentorForm}><img src={add_person}/></button>

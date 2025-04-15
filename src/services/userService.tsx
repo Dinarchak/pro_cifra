@@ -1,5 +1,10 @@
 import api from "./api";
 
+type setUserAvatarType = {
+    user_id: number,
+    file: File
+}
+
 const userService = {
     getUser: async() => {
         const resp = await api.get('/user/getAllAboutUser');
@@ -20,6 +25,16 @@ const userService = {
         const resp = await api.get("user/getByString", {params: {user: fullname}});
 
         return resp.data;
+    },
+
+    setUserAvater: async({user_id, file}: setUserAvatarType) => {
+        const form = new FormData();
+        form.append('file', file)
+
+        const resp = await api.post(`photo/setUserAvatar/${user_id}`, form, {headers: {
+            "Content-Type": "multipart/form-data"
+        }})
+        return resp.data
     }
 };
 

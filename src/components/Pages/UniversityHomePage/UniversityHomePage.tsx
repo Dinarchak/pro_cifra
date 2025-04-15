@@ -42,6 +42,9 @@ export default function UniversityHomePage() {
         setMentors(uni.mentorList);
         setUniName(uni.university);
         setUser(user_);
+
+        console.log(uni, avatar_blob, background_blob, user_)
+
     }, [id]);
 
     useEffect(() => {

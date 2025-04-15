@@ -1,5 +1,5 @@
 import styles from './.module.css'
-import Avatar from '../../UI/Avatar/avatar';
+import Avatar from '../../Widgets/Avatar/avatar';
 import img from "../../../static/logout-svgrepo-com.svg"
 
 type ObjectLabelType = {

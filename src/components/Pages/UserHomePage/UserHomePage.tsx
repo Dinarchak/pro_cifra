@@ -14,7 +14,7 @@ import User from "../../../models/user";
 import courseService from "../../../services/courseService";
 import Course from "../../../models/course";
 import CourseCard from "../../Dummies/CourseCard/CourseCard";
-import Avatar from "../../UI/Avatar/avatar";
+import Avatar from "../../Widgets/Avatar/avatar";
 import CardList from "../../Widgets/CardList/CardList";
 import AddMentorForm from "../../Widgets/AddMentorForm/AddMentorForm";
 

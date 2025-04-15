@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import styles from "./.module.css";
 import CardList from "../../Widgets/CardList/CardList";
-import Avatar from "../../UI/Avatar/avatar";
+import Avatar from "../../Widgets/Avatar/avatar";
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import Course from "../../../models/course";
 import uniService from "../../../services/uniService";

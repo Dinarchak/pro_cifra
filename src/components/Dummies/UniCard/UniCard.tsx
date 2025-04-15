@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import University from "../../../models/university";
-import Avatar from "../../UI/Avatar/avatar";
+import Avatar from "../../Widgets/Avatar/avatar";
 import uniService from "../../../services/uniService";
 import { useCallback, useEffect, useState } from "react";
 import style from "./.module.css";

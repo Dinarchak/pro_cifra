@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import usePooling from "../../../hooks/usePooling";
 import User from "../../../models/user";
-import Avatar from "../../UI/Avatar/avatar";
+import Avatar from "../../Widgets/Avatar/avatar";
 import userService from "../../../services/userService";
 import styles from "./.module.css"
 import plus from "../../../static/add.svg"

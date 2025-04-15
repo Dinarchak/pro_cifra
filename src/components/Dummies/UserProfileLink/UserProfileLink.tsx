@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import userService from "../../../services/userService";
-import Avatar from "../../UI/Avatar/avatar";
+import Avatar from "../../Widgets/Avatar/avatar";
 import style from "./.module.css";
 import { Link } from "react-router-dom";
 import default_avatar from "../../../static/user-svgrepo-com.svg";

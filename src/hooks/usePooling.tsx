@@ -33,7 +33,7 @@ function usePooling(delay: number, callback:() => Promise<void>, enabled=true, r
         loadData();
 
         return () => { cancelled = true;};
-    }, [delay, callback])
+    }, [delay, callback, enabled, retryDelay])
 }
 
 export default usePooling;

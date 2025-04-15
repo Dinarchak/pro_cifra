@@ -1,0 +1,26 @@
+.doMentorBtn {
+    width: var(--text-lg);
+    height: var(--text-lg);
+    border: none;
+    background: none;
+}
+
+.doMentorBtn > img {
+    width: var(--text-lg);
+    height: var(--text-lg);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    font-size: var(--text-xl)
+}
+
+.label {
+    display: flex;
+}
+
+.label > p {
+    margin-left: 10px;
+}

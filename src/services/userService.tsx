@@ -15,11 +15,11 @@ const userService = {
         const resp = await api.get(`user/${id}`)
         return resp.data;
     },
-    getUsersByFullname: async(fullname: string) => {
-        const resp = await api.get(`user/getByString`, {params: {user: fullname}});
-        console.log(resp.data);
 
-        return resp;
+    getUsersByFullname: async(fullname: string) => {
+        const resp = await api.get("user/getByString", {params: {user: fullname}});
+
+        return resp.data;
     }
 };
 

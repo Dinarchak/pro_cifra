@@ -23,7 +23,7 @@ function usePooling(delay: number, callback:() => Promise<void>, enabled=true, r
 
                 retries++;
                 curDelay = retryDelay
-                console.log(`Ошибка загрузки (${retries} / ${maxRetries})`)
+                console.log(`Ошибка загрузки (${retries} / ${maxRetries})`, error)
             } finally {
                 if (!cancelled && retries < 10) {
                     setTimeout(loadData, curDelay);

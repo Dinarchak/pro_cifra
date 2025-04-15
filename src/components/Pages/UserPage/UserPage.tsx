@@ -39,6 +39,8 @@ export default function UserPage() {
         data.role = roles[data.role];
         const coursesList_ = await courseService.getAllCourses();
         setCoursesList(coursesList_);
+
+        console.log(coursesList)
       }
     }, [id]);
 

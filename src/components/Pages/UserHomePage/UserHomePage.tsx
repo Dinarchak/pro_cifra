@@ -23,6 +23,8 @@ import Modal from 'react-bootstrap/Modal';
 import style from "./.module.css";
 import plus from "../../../static/add.svg";
 import add_person from "../../../static/person_add.svg";
+import default_avatar from "../../../static/user-svgrepo-com.svg"
+
 
 
 export default function UserHomePage() {
@@ -60,7 +62,7 @@ export default function UserHomePage() {
         <>
           <div className={style.userInfo}>
             <div className={style.userHeader}>
-              <Avatar size={5} blob={avatar} enabled={Boolean(token.token)} updateAvatar={async (file: File) => {
+              <Avatar size={5} blob={avatar} default_avatar={default_avatar} enabled={Boolean(token.token)} updateAvatar={async (file: File) => {
                   await userService.setUserAvater({user_id: user.id, file: file})
                 }}/>
               <ObjectLabel label={user.fullname}/>

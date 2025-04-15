@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import default_avatar from "../../../static/user-svgrepo-com.svg";
 import usePooling from "../../../hooks/usePooling";
 
+
 type UserProfileLinkType = {
     id: number,
     name: string,
@@ -24,7 +25,7 @@ export default function UserProfileLink({id, name, email}: UserProfileLinkType) 
     
     return <>
         <div className={style.container}>
-            <Avatar size={5} blob={avatar} enabled={false}/>
+            <Avatar size={5} blob={avatar} enabled={false} default_avatar={default_avatar}/>
             <div className={style.bio}>
                 <Link to={`/user/${id}`}>
                     <h3 className={style.title}>{name}</h3>

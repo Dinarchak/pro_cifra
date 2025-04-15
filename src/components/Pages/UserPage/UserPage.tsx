@@ -17,6 +17,7 @@ import CardList from "../../Widgets/CardList/CardList";
 
 import { useParams } from "react-router";
 import usePooling from "../../../hooks/usePooling";
+import default_avatar from "../../../static/user-svgrepo-com.svg"
 
 import style from "./.module.css";
 
@@ -46,7 +47,7 @@ export default function UserPage() {
     return <>
         <div className={style.userInfo}>
             <div className={style.userHeader}>
-              <Avatar size={5} blob={avatar} enabled={false}/>
+              <Avatar size={5} blob={avatar} enabled={false} default_avatar={default_avatar}/>
               <ObjectLabel label={user.fullname}/>
             </div>
             <div>

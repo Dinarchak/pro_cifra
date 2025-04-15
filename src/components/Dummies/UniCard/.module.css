@@ -6,6 +6,8 @@
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     background-color: var(--color-surface);
+    height: 20vh;
+    max-width: 80wh;
 }
 
 .desc {
@@ -15,12 +17,15 @@
 }
 
 .photo {
+    flex: 1;
     overflow: hidden;
-    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .photo img {
     object-fit: cover;
     margin: auto;
-    height: 100%;
+    width: 100%;
 }

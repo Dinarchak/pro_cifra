@@ -5,7 +5,8 @@ import { useEffect, useState, useRef } from 'react';
 type AvatarType = {
     blob?: Blob,
     size: number,
-    enabled: boolean
+    enabled: boolean,
+    default_avatar?: string,
     updateAvatar?: (file: File) => Promise<void>
 }
 
@@ -39,7 +40,6 @@ const Avatar: React.FC<AvatarType> = (props: AvatarType) => {
         const url = URL.createObjectURL(blob_);
         setObjectUrl(url);
 
-
         return () => {
             URL.revokeObjectURL(url);
         };
@@ -48,9 +48,7 @@ const Avatar: React.FC<AvatarType> = (props: AvatarType) => {
 
   return (
     <div className={style.container} style={{ height: `${props.size}rem`, width: `${props.size}rem` }}>
-      {objectUrl && (
-        <img className={props.enabled ? style.avatar : style.constAvatar} src={objectUrl} alt="Аватар"/>
-      )}
+    <img className={props.enabled ? style.avatar : style.constAvatar} src={objectUrl ? objectUrl : props.default_avatar} alt="Аватар"/>
       {props.enabled && <>
       <img className={style.iconOverlay} src={upload} onClick={handleIconClick}/>
       <input

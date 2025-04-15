@@ -6,6 +6,7 @@ import userService from "../../../services/userService";
 import styles from "./.module.css"
 import plus from "../../../static/add.svg"
 import mentorService from "../../../services/mentorService";
+import default_avatar from "../../../static/user-svgrepo-com.svg";
 
 
 export default function UserToMentorCard({user}: {user: User}) {
@@ -20,7 +21,7 @@ export default function UserToMentorCard({user}: {user: User}) {
 
     return <div className={styles.container}>
         <div className={styles.label}>
-            <Avatar size={3} blob={avatar} enabled={false}/>
+            <Avatar size={3} blob={avatar} enabled={false} default_avatar={default_avatar}/>
             <p>{user.fullname}</p>
         </div>
         <button className={styles.doMentorBtn} onClick={async (e) => {

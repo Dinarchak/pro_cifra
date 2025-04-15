@@ -5,7 +5,7 @@ import uniService from "../../../services/uniService";
 import { useCallback, useEffect, useState } from "react";
 import style from "./.module.css";
 import usePooling from "../../../hooks/usePooling";
-import { endianness } from "os";
+import default_avatar from "../../../static/uni.svg";
 
 function get_correct_form(number: number): string {
     if ((5 <= number % 100 && number % 100 <= 19) || (number % 10 === 0)) {
@@ -59,7 +59,7 @@ export default function UniCard(params: UniCardType) {
     return <>
         <div className={style.card}>
             <div className={style.uniAvatar}>
-                <Avatar blob={avatar} size={4} enabled={false}/>
+                <Avatar blob={avatar} size={4} enabled={false} default_avatar={default_avatar}/>
             </div>
             <div className={style.desc}>
                 <Link to={`/university/${params.obj.id}`}><h3 className={style.name}>{params.obj.university}</h3></Link>

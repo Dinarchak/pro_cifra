@@ -13,6 +13,7 @@ import usePooling from "../../../hooks/usePooling";
 import { useAuth } from "../../../provider/authProvider";
 import userService from "../../../services/userService";
 import upload from "../../../static/upload_file.svg";
+import default_avatar from "../../../static/uni.svg"
 
 
 export default function UniversityHomePage() {
@@ -106,7 +107,7 @@ export default function UniversityHomePage() {
             </div>
             <div className={styles.UniversityTitle}>
                 <div className={styles.UniversityAvatar}>
-                <Avatar size={6} blob={avatar} enabled={enambleEditing}
+                <Avatar size={6} blob={avatar} enabled={enambleEditing} default_avatar={default_avatar}
                 updateAvatar={ async (file: File) => await uniService.setUniAvatar({uni_id: id, file: file})}
                 />
                 </div>

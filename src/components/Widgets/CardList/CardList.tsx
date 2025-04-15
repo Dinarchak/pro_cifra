@@ -1,7 +1,3 @@
-import { useState, useEffect, ReactNode } from "react";
-import Course from "../../../models/course";
-import courseService from "../../../services/courseService";
-import CourseCard from "../../Dummies/CourseCard/CourseCard";
 import styles from "./.module.css";
 
 type CardListType<T extends {id: number}> = {
@@ -10,7 +6,6 @@ type CardListType<T extends {id: number}> = {
 }
 
 export default function CardList<T extends {id: number}>({list, Card}: CardListType<T>) {
-
     const coursesList = list.map(obj => <>
         <li key={obj.id} className={styles.courseCard}>
             <Card obj={obj}/>

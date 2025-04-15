@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 
-function usePooling(delay: number, callback:() => Promise<void>) {
+function usePooling(delay: number, callback:() => Promise<void>, enabled=true, retryDelay=100) {
     useEffect(() => {
+        if (!enabled) {
+            return;
+        }
         let curDelay = delay;
         let cancelled = false;
         let retries = 0;
         const maxRetries = 10;
-        const retryDelay = 100;
         const loadData = async () => {
             try {
                 await callback();
@@ -21,9 +23,9 @@ function usePooling(delay: number, callback:() => Promise<void>) {
 
                 retries++;
                 curDelay = retryDelay
-                console.log(`Ошибка загрузки (${retries} / ${maxRetries})`, error)
+                console.log(`Ошибка загрузки (${retries} / ${maxRetries})`)
             } finally {
-                if (!cancelled) {
+                if (!cancelled && retries < 10) {
                     setTimeout(loadData, curDelay);
                 }
             }

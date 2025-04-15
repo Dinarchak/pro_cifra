@@ -32,19 +32,20 @@ export default function UniversityHomePage() {
 
     const fetchData = useCallback(async () => {
         const uni = await uniService.getUniversityInfo(id);
-        const avatar_blob = await uniService.getUniversityAvatar(id);
-        const background_blob = await uniService.getUniversityBackground(id);
-        const user_ = await userService.getUser();
-        if (background_blob !== undefined)
-            setBackgroundBlob(background_blob);
-        setAvatarBlob(avatar_blob);
+
         setCoursesList(uni.giveCourseDTOList);
         setMentors(uni.mentorList);
         setUniName(uni.university);
+
+        const user_ = await userService.getUser();
         setUser(user_);
 
-        console.log(uni, avatar_blob, background_blob, user_)
+        const avatar_blob = await uniService.getUniversityAvatar(id);
+        setAvatarBlob(avatar_blob);
 
+        const background_blob = await uniService.getUniversityBackground(id);
+        if (background_blob !== undefined)
+            setBackgroundBlob(background_blob);
     }, [id]);
 
     useEffect(() => {

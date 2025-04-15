@@ -5,5 +5,5 @@ export default interface University {
     id: number,
     university: string,
     giveCourseDTOList: Array<Course>,
-    giveUserDTOList: Array<User>
+    mentorList: Array<User>
 }

@@ -6,6 +6,8 @@ import Select, { SingleValue } from "react-select";
 import uniService from "../../../services/uniService";
 import University from "../../../models/university";
 import usePooling from "../../../hooks/usePooling";
+import { useNavigate } from "react-router";
+
 
 type OptionType = {
   value: string,
@@ -14,6 +16,7 @@ type OptionType = {
 
 const RegisterPage: React.FC = () => {
 
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [fullname, setFullName] = useState("");
   const [password, setPassword] = useState("");
@@ -50,6 +53,7 @@ const RegisterPage: React.FC = () => {
               university: university ? university.value : ""
             });
             console.log("Запрос обработан")
+            navigate('/login');
         }
         catch {
             setError("Ошибка. Запрос не принят.")

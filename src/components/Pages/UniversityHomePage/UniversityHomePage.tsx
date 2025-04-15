@@ -39,7 +39,7 @@ export default function UniversityHomePage() {
             setBackgroundBlob(background_blob);
         setAvatarBlob(avatar_blob);
         setCoursesList(uni.giveCourseDTOList);
-        setMentors(uni.giveUserDTOList);
+        setMentors(uni.mentorList);
         setUniName(uni.university);
         setUser(user_);
     }, [id]);

@@ -12,7 +12,7 @@ import User from "../../../models/user";
 import courseService from "../../../services/courseService";
 import Course from "../../../models/course";
 import CourseCard from "../../Dummies/CourseCard/CourseCard";
-import Avatar from "../../UI/Avatar/avatar";
+import Avatar from "../../Widgets/Avatar/avatar";
 import CardList from "../../Widgets/CardList/CardList";
 
 import { useParams } from "react-router";
@@ -40,7 +40,7 @@ export default function UserPage() {
         const coursesList_ = await courseService.getAllCourses();
         setCoursesList(coursesList_);
 
-        console.log(coursesList)
+        console.log(coursesList_)
       }
     }, [id]);
 

@@ -26,6 +26,11 @@ const courseService = {
     getCourseById: async (id: number) => {
         const resp = await api.get(`/course/courseById/${id}`);
         return resp.data;
+    },
+
+    deleteCourse: async (id: number ) => {
+        const resp = await api.delete(`/course/deleteCourseById/${id}`);
+        return resp.data;
     }
 }
 

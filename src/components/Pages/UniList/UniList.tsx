@@ -49,7 +49,7 @@ export default function UniList() {
 
     return <>
         <FilterInput filter={filter} onFilterChange={setFilter}/>
-        <CardList<University> list={filteredList} Card={UniCard}/>
+        <CardList<University, any> list={filteredList} Card={UniCard}/>
         <div style={{display:"flex", justifyContent: "center"}}>
         <Pagination size="lg">
           {page > 1 && <Pagination.First onClick={() => setPage(0)}/>}

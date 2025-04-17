@@ -100,7 +100,7 @@ export default function UserHomePage() {
             </Modal>
 
             <div className={style.coursesList}>
-              <CardList<Course> list={coursesList} Card={CourseCard}/>
+              <CardList<Course, { candelete: boolean }> list={coursesList} Card={CourseCard} cardProps={{candelete: true}}/>
             </div>
           </>
           : <></>}

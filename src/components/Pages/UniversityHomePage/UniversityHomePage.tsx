@@ -124,7 +124,7 @@ export default function UniversityHomePage() {
                 minscore={courseMinScoreFilter}/>
             </div>
             <div className={styles.courses}>
-                <CardList<Course> list={filteredCards} Card={CourseCard}/>
+                <CardList<Course, any> list={filteredCards} Card={CourseCard}/>
             </div>
             <div className={styles.mentors}>
                 {mentors.map((mentor) => {

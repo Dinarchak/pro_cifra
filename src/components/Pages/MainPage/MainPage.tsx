@@ -52,7 +52,7 @@ export default function MainPage() {
         onUniChange={setCourseUniFilter}
         onCodeChange={setCourseCodeFilter}/>
         <div className={styles.courses}>
-          <CardList<Course> list={fitleredList} Card={CourseCard}/>
+          <CardList<Course, any> list={fitleredList} Card={CourseCard}/>
         </div>
       </div>;
 }

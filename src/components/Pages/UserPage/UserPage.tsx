@@ -65,7 +65,7 @@ export default function UserPage() {
         {user.role !== null ? <>
           <h3 style={{margin: "30px 0 25px 0"}}>Курируемые программы</h3>
             <div className={style.coursesList}>
-              {coursesList.length == 0 ?  <p style={{textAlign: 'center', color: 'var(--color-muted)'}}>Здесь пока ничего нет</p> : <CardList<Course> list={coursesList} Card={CourseCard}/>}
+              <CardList<Course, any> list={coursesList} Card={CourseCard}/>
             </div>   
         </> : <></>}
     </>

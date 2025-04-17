@@ -4,9 +4,30 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     background-color: var(--color-surface);
     width: 70vw;
+    position: relative;
 }
 
 .cardName {
     padding: 10px;
     font-size: x-large;
+}
+
+.deleteBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 3rem;
+    height: 3rem;
+
+    border: none;
+    background: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deleteBtn img {
+    width: 90%;
+    height: 90%;
 }

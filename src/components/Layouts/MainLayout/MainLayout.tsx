@@ -2,14 +2,22 @@ import styles from "./.module.css";
 import ProfileIcon from "../../UI/ProficeIcon/ProfileIcon";
 import {Outlet, Link} from "react-router-dom";
 import { useAuth } from "../../../provider/authProvider";
+import logo from "../../../static/logo.jpg";
+import React from "react";
+import Dropdown from 'react-bootstrap/Dropdown';
+
+type CustomToggleProps = {
+  children?: React.ReactNode;
+};
 
 export default function MainLayout() {
     const token = useAuth();
+
     return (<>
-      <header className={styles.header + " heading"}>
+      <header className={styles.header}>
         <div className={styles.headerDivider}>
           <div className={styles.leftHalf}>
-          <h1 className={styles.logo}>Логотип</h1>
+          <div className={styles.logo}><img src={logo}/></div>
           <nav className={styles.naviagation}>
             <ul>
               <li><Link to="/">Программы обмена</Link></li>
@@ -17,10 +25,22 @@ export default function MainLayout() {
             </ul>
           </nav>
           </div>
-          <div>
+          <div className={styles.rightHalf}>
             { token.token ?
               (
-                <Link to="/profile"><ProfileIcon/></Link>
+                <Dropdown>
+                  <Dropdown.Toggle id="dropdown-custom-1">
+                      <ProfileIcon/>
+                  </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href='/profile'>
+                      <span className={styles.dropdownText}>Профиль</span>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                      <span className={styles.dropdownText} onClick={() => token.setToken(null)}>Выход</span>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+                </Dropdown>
               ):(
                 <>
                 <Link to="/login">Вход</Link>

@@ -1,112 +1,116 @@
-#root, html {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-background);
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
+/* === Основные переменные === */
 :root {
-  /* 🎨 Цветовая палитра */
-  --color-primary: #6b66d6;
-  --color-accent: #10B981;
-  --color-background: #f9fafbe6;
-  --color-surface: #FFFFFF;
-  --color-text: #111827;
-  --color-ps: #374151;
-  --color-muted: #6B7280;
-  --color-error: #EF4444;
+  /* 🎨 Цвета */
+  --color-main: #9f2d20;            /* Акцент (СПбГУ) */
+  --color-bg: #f9f9f9;              /* Цвет фона */
+  --color-card-bg: #ffffff;         /* Фон карточек */
+  --color-text: #1e1e1e;            /* Основной текст */
+  --color-light-text:#f4f4f4;       /* светлый текст */
+  --color-subtext: #555555;         /* Второстепенный текст */
+  --color-accent-blue: #2b6cb0;     /* Ссылки, акценты */
+  --color-border: #e0e0e0;          /* Границы/разделители */
 
-  /* 🖋️ Шрифты */
-  --font-base: 'Nunito', sans-serif;
-  --font-heading: 'Roboto Slab', serif;
-  --font-mono: 'Fira Code', monospace;
+  /* 🖋 Шрифты */
+  --font-main: 'Inter', sans-serif;
 
-  /* 📐 Размеры шрифта */
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
+  /* 🔠 Размеры шрифта (в rem) */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem;   /* 16px */
+  --font-size-lg: 1.25rem;  /* 20px */
+  --font-size-xl: 1.75rem;  /* 28px */
+  --font-size-2xl: 2.5rem;  /* 28px */
+
+  /* 📏 Отступы и границы */
+  --radius: 12px;
+  --card-padding: 1.25rem;       /* 20px */
+  --spacing-sm: 0.5rem;          /* 8px */
+  --spacing-md: 1rem;            /* 16px */
+  --spacing-lg: 1.5rem;          /* 24px */
 }
 
-/* 🎯 Типографика */
-.bodyText {
-  font-family: var(--font-base);
-  font-size: var(--text-base);
+/* === Базовая стилизация === */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
   color: var(--color-text);
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
 }
 
-.heading {
-  font-family: var(--font-heading);
-  font-size: var(--text-xl);
-  font-weight: 700;
-  color: var(--color-text);
+h1 {
+  font-size: var(--font-size-xl);
+  color: var(--color-main);
+}
+h2, h3 {
+  font-size: var(--font-size-lg);
+  color: var(--color-main);
+  margin-bottom: var(--spacing-sm);
 }
 
-.caption {
-  font-size: var(--text-sm);
-  color: var(--color-muted);
+a {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 
-/* 🖍️ Цветовые утилиты */
-.textPrimary {
-  color: var(--color-primary);
+/* === Карточки === */
+.card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--card-padding);
+  margin-bottom: var(--spacing-lg);
 }
 
-.textAccent {
-  color: var(--color-accent);
+/* === Инпуты и селекты === */
+input, select {
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  width: 100%;
+  margin-bottom: var(--spacing-sm);
+  box-sizing: border-box;
 }
 
-.bgPrimary {
-  background-color: var(--color-primary);
+/* === Хедер/Футер === */
+header, footer {
+  background-color: var(--color-main);
   color: white;
+  padding: var(--spacing-md);
+  text-align: center;
 }
 
-.bgAccent {
-  background-color: var(--color-accent);
-  color: white;
+footer {
+  font-size: var(--font-size-sm);
 }
 
-/* 🔘 Кнопки */
-.buttonPrimary {
-  background-color: var(--color-primary);
+/* === Кнопки (если будут) === */
+button {
+  background-color: var(--color-main);
   color: white;
-  padding: 0.5rem 1rem;
-  font-size: var(--text-base);
   border: none;
-  border-radius: 0.5rem;
+  border-radius: var(--radius);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-base);
   cursor: pointer;
 }
-
-.buttonPrimary:hover {
-  background-color: #4338ca;
+button:hover {
+  background-color: #801f18;
 }
 
-.buttonAccent {
-  background-color: var(--color-accent);
-  color: white;
-  padding: 0.5rem 1rem;
-  font-size: var(--text-base);
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
+#dropdown-custom-1 {
+  background: none;
+  border: none; 
+  position: relative;
 }
 
-.buttonAccent:hover {
-  background-color: #059669;
-}
-
-/* 📦 Контейнер */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
+#dropdown-custom-1::after {
+  position: absolute;
+  top: 50%;
+  right: -5px;
 }

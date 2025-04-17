@@ -1,5 +1,5 @@
 import style from "./.module.css"
-import icon from "../../../static/user-svgrepo-com.svg"
+import icon from "../../../static/person_light.svg"
 
 export default function ProfileIcon() {
     return (

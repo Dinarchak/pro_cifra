@@ -37,7 +37,7 @@ export default function UserPage() {
       setAvatarBlob(avatar_);
       if (data.role !== null) {
         data.role = roles[data.role];
-        const coursesList_ = await courseService.getAllCourses();
+        const coursesList_ = await courseService.getAllCoursesByUserId(id);
         setCoursesList(coursesList_);
 
         console.log(coursesList_)
@@ -63,8 +63,8 @@ export default function UserPage() {
         </div>
 
         {user.role !== null ? <>
+          <h3 style={{margin: "30px 0 25px 0"}}>Курируемые программы</h3>
             <div className={style.coursesList}>
-            <h3 style={{marginBottom: "25px"}}>Курируемые программы</h3>
               {coursesList.length == 0 ?  <p style={{textAlign: 'center', color: 'var(--color-muted)'}}>Здесь пока ничего нет</p> : <CardList<Course> list={coursesList} Card={CourseCard}/>}
             </div>   
         </> : <></>}

@@ -11,7 +11,7 @@ import usePooling from "../../../hooks/usePooling";
 export default function MainPage() {
 
     const [courseNameFilter, setCourseNameFilter] = useState("");
-    const [courseMinScoreFilter, setCourseMinScoreFilter] = useState("0");
+    const [courseMinScoreFilter, setCourseMinScoreFilter] = useState(5);
     const [courseUniFilter, setCourseUniFilter] = useState("");
     const [courseCodeFitler, setCourseCodeFilter] = useState("");
 
@@ -30,21 +30,30 @@ export default function MainPage() {
           course.major.toLowerCase().includes(courseNameFilter.toLowerCase()) &&
           course.university.toLowerCase().includes(courseUniFilter.toLowerCase()) &&
           course.coursecode.toLowerCase().includes(courseCodeFitler.toLowerCase()) &&
-          course.minscore <= Number(courseMinScoreFilter)
+          (!courseMinScoreFilter || course.minscore <= Number(courseMinScoreFilter))
         );})
     }, [coursesList, courseNameFilter, courseMinScoreFilter, courseUniFilter, courseCodeFitler])
 
     return <div className={styles.container}>
         <CourseCardListFilter
         name={courseNameFilter}
-        minscore={courseMinScoreFilter}
+        minscore={courseMinScoreFilter.toString()}
         uni={courseUniFilter}
         code={courseCodeFitler}
         onNameChange={setCourseNameFilter}
-        onMinScoreChange={setCourseMinScoreFilter}
+        onMinScoreChange={(v) => { 
+          if (Number(v) <= 0)
+            setCourseMinScoreFilter(0);
+          else if (Number(v) >= 5)
+            setCourseMinScoreFilter(5);
+          else
+            setCourseMinScoreFilter(Number(v));
+        }}
         onUniChange={setCourseUniFilter}
         onCodeChange={setCourseCodeFilter}/>
-        <CardList<Course> list={fitleredList} Card={CourseCard}/>
+        <div className={styles.courses}>
+          <CardList<Course> list={fitleredList} Card={CourseCard}/>
+        </div>
       </div>;
 }
 

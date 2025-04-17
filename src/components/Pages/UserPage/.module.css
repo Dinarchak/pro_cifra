@@ -25,7 +25,8 @@
     background-color: var(--color-surface);
     font-family: var(--font-base);
     position: relative;
-    min-height: 2rem;
+    display: flex;
+    justify-content: center;
 }
 
 .addCourseBtn {

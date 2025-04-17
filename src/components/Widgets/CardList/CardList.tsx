@@ -13,8 +13,11 @@ export default function CardList<T extends {id: number}>({list, Card}: CardListT
     </>)
 
     return (<>
+        {coursesList.length === 0 ?
+        <p style={{fontSize: "var(--text-2xl)", textAlign: 'center', color: 'var(--color-muted)'}}>Здесь пока ничего нет.</p> :
+
         <ul className={styles.list}>
             {coursesList}
-        </ul>
+        </ul>}
     </>);
 }

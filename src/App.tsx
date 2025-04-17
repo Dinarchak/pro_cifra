@@ -10,6 +10,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AuthProvider from './provider/authProvider';
 import UniList from './components/Pages/UniList/UniList';
 import UserPage from './components/Pages/UserPage/UserPage';
+import CourseHomePage from './components/Pages/CourseHomePage/CourseHomePage';
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: '/user/:id',
         Component: UserPage
+      },
+      {
+        path: '/course/:id',
+        Component: CourseHomePage
       },
       {
         Component: ProtectedRoute,

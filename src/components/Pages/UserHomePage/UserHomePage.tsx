@@ -100,7 +100,7 @@ export default function UserHomePage() {
             </Modal>
 
             <div className={style.coursesList}>
-              {coursesList.length == 0 ?  <p style={{textAlign: 'center', color: 'var(--color-muted)'}}>Здесь пока ничего нет</p> : <CardList<Course> list={coursesList} Card={CourseCard}/>}
+              <CardList<Course> list={coursesList} Card={CourseCard}/>
             </div>
           </>
           : <></>}

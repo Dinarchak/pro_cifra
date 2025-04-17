@@ -4,8 +4,6 @@ import { AuthContextType } from "../models/auth";
 
 const AuthContext = createContext<AuthContextType>({token: null, setToken: () => {return;}});
 
-
-
 const AuthProvider = ({children}: {children: React.ReactNode}) => {
     const [token, setToken_] = useState<string | null>(localStorage.getItem('token') ?? null);
 

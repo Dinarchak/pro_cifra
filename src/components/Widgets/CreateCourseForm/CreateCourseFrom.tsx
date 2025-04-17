@@ -39,8 +39,8 @@ export default function CourseForm({university}: {university: string}) {
             <FormInput label="Специальность" callback={setMajor} type="text" value={major}/>
             <FormInput label="Код специальности" callback={setCourseCode} type="text" value={course_code}/>
             <FormInput label="Минимальный средний бал" callback={setMinScore} type="number" value={min_score}/>
-            <FormTextarea label="Описание" callback={setDesc}/>
-            <FormTextarea label="Требования" callback={setRequirements}/>
+            <FormTextarea label="Описание" callback={setDesc} value={description}/>
+            <FormTextarea label="Требования" callback={setRequirements} value={requirement}/>
             
             {/* Submit */}
             <div className={styles.submitWrapper}>

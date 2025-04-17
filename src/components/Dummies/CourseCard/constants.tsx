@@ -1,9 +1,12 @@
 const ProgramCardFieldNames = {
     university: "Университет",
-    major: "Направление",
     minscore: "Минимальный средний балл",
     requirement: "Требования",
     description: "Описание",
 };
 
+const textMaxLength = 75;
+
 export default ProgramCardFieldNames;
+
+export {textMaxLength};

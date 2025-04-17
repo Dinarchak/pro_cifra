@@ -1,3 +1,9 @@
 .container {
     display: flex;
 }
+
+.courses {
+    flex: 1;
+    display:flex;
+    justify-content: center;
+}

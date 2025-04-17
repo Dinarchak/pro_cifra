@@ -25,7 +25,8 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     background-color: var(--color-surface);
     font-family: var(--font-base);
-    min-height: 2rem;
+    display: flex;
+    justify-content: center;
 }
 
 .addBtn {

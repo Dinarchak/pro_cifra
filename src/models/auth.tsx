@@ -1,3 +1,5 @@
+import User from "./user";
+
 export interface RegisterData {
     email: string;
     fullname: string;
@@ -14,4 +16,5 @@ export default interface LoginData {
 export interface AuthContextType {
     token: string | null;
     setToken: (newToken: string | null) => void;
+    user: User | null;
 }

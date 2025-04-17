@@ -1,7 +1,7 @@
 import { UserWithAvatar } from "../../../models/user";
 import Comment from "../../../models/comment";
 import { useComment } from "../../../provider/commentProvider";
-import Avatar from "../../Widgets/Avatar/avatar";
+import Avatar from "../Avatar/avatar";
 import default_avatar from "../../../static/user-svgrepo-com.svg";
 import styles from "./.module.css";
 import { useEffect, useState } from "react";
@@ -41,28 +41,40 @@ export default function SingleComment({id}: {id: number}) {
           Ответить
         </span>
       </div>
-      { (token.token && user && comment && showForm) &&
+      { (token.token && token.user && comment && showForm) &&
+  (() => {
+    const user = token.user; // 💡 TypeScript теперь уверен, что он не null
+
+    return (
       <div className={styles.commentReplyForm}>
         <textarea
           rows={4}
           className={styles.textarea}
           onChange={(e) => {
-            setAns(e.target.value);}}
+            setAns(e.target.value);
+          }}
           value={ans}
           placeholder="Начните писать"
         />
         <div className={styles.replyMenu}>
           <Button callback={async () => {
-            await commentService.sendComment({comment: ans, idcourse: context.courseId, iduser: user.id, idanswerto: comment.id})
+            await commentService.sendComment({
+              comment: ans,
+              idcourse: context.courseId,
+              iduser: user.id, // теперь без ошибок
+              idanswerto: comment.id
+            });
             const resp = await commentService.getAllComments(context.courseId);
             context.updateCommentsList(resp);
             setShowForm(false);
             setAns("");
           }}>Отправить</Button>
-          <Button callback={() => {setShowForm(false)}}>Закрыть</Button>
+          <Button callback={() => setShowForm(false)}>Закрыть</Button>
         </div>
       </div>
-      }
+    );
+  })()
+}
     </div>
   );
 }

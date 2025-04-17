@@ -25,7 +25,7 @@ const AuthProvider = ({children}: {children: React.ReactNode}) => {
             setUser(null);
             localStorage.removeItem('token');
         }
-    }, [token]);
+    }, [token, user]);
 
     const contextValue = useMemo(
         () => ({

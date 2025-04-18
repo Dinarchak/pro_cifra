@@ -27,7 +27,7 @@ module.exports = {
     rules: {
       // 🔧 Твои кастомные правила ниже
       '@typescript-eslint/no-unused-vars': 'off',
-      'typescript-eslint\no-explicit-any': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
       'react/react-in-jsx-scope': 'off', // Не нужен в React 17+
       'react/prop-types': 'off', // Не нужен с TypeScript
     },

@@ -2,16 +2,22 @@
     display: flex;
     justify-content: space-between;
 
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    background-color: var(--color-surface);
-    height: 20vh;
-    max-width: 80wh;
+    border-radius: 12px;
+    height: 40vh;
+
+    box-shadow: var(--shadow-light);
+    width: 60vw;
+    position: relative;
+
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    padding: var(--card-padding);
+    margin-bottom: var(--spacing-lg);
 }
 
 .desc {
     flex: 1;
+    font-size: var(--font-size-lg);
     margin: 0 30px;
     width: 50%;
 }
@@ -25,7 +31,16 @@
 }
 
 .photo img {
-    object-fit: cover;
-    margin: auto;
     width: 100%;
+}
+
+.card a {
+    text-decoration: none;
+    color: var(--color-accent-blue);
+    font-size: var(--font-size-xl);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
 }

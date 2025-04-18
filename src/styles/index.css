@@ -26,6 +26,11 @@
   --spacing-sm: 0.5rem;          /* 8px */
   --spacing-md: 1rem;            /* 16px */
   --spacing-lg: 1.5rem;          /* 24px */
+
+  
+  /* 🌚 Тени */
+  --shadow-light: 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 /* === Базовая стилизация === */

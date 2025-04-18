@@ -1,6 +1,6 @@
 import styles from "./.module.css";
 import ProfileIcon from "../../UI/ProficeIcon/ProfileIcon";
-import {Outlet, Link} from "react-router-dom";
+import {Outlet, Link, useLocation} from "react-router-dom";
 import { useAuth } from "../../../provider/authProvider";
 import logo from "../../../static/logo.jpg";
 import React from "react";
@@ -12,6 +12,7 @@ type CustomToggleProps = {
 
 export default function MainLayout() {
     const token = useAuth();
+    const location = useLocation();
 
     return (<>
       <header className={styles.header}>

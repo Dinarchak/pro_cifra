@@ -62,7 +62,7 @@ export default function UniCard(params: UniCardType) {
                 <Avatar blob={avatar} size={4} enabled={false} default_avatar={default_avatar}/>
             </div>
             <div className={style.desc}>
-                <Link to={`/university/${params.obj.id}`}><h3 className={style.name}>{params.obj.university}</h3></Link>
+                <Link to={`/university/${params.obj.id}`}><p className={style.name}>{params.obj.university}</p></Link>
                 <p className={style.courses}>{courses_str}</p>
             </div>
             <div className={style.photo}>

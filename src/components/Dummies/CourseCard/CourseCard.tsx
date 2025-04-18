@@ -6,7 +6,6 @@ import ProgramCardFieldNames from "./constants"
 import { textMaxLength } from "./constants";
 import { Link } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
-import AddMentorForm from "../../Widgets/AddMentorForm/AddMentorForm";
 import { useState } from "react";
 import courseService from "../../../services/courseService";
 
